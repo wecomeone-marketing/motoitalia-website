@@ -1,0 +1,373 @@
+<!doctype html>
+<!--
+  MOTO ITALIA — Homepage design concept, Phase 1
+  Prepared by Wecomeone Marketing And Comms, September 2026
+
+  Every colour, type choice and logo lockup here traces back to the
+  finalised Moto Italia brand guidelines (decks.wecomeone.me/moto-italia-branding-2).
+  No new brand elements have been introduced.
+
+  Anywhere real photography, video or copy is still pending from the client
+  or from Piaggio Group, the block is built at final size and styling with
+  a small PLACEHOLDER tag, so swapping in the real asset later is a drop-in.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moto Italia — Homepage Concept</title>
+<meta name="description" content="Piaggio, Vespa, Moto Guzzi and Aprilia — sales and service in Larnaka, Cyprus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rosso:#DF0123;
+  --nero:#0D0D0D;
+  --nero2:#161616;
+  --bianco:#F5F3EF;
+  --verde:#069147;
+  --line:rgba(245,243,239,.14);
+  --mut:rgba(245,243,239,.58);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--nero);color:var(--bianco);font-family:Inter,system-ui,sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:"Bebas Neue",Inter,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.94;margin:0}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+@media(min-width:760px){.wrap{padding:0 40px}}
+
+.eyebrow{font-family:Inter;font-weight:600;text-transform:uppercase;letter-spacing:.22em;font-size:11.5px;color:var(--mut)}
+.eyebrow.on{color:var(--rosso)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:Inter;font-weight:600;font-size:13.5px;text-transform:uppercase;letter-spacing:.1em;padding:15px 26px;border-radius:2px;transition:opacity .2s}
+.btn.fill{background:var(--rosso);color:var(--bianco)}
+.btn.line{border:1px solid rgba(245,243,239,.4);color:var(--bianco)}
+.btn:hover{opacity:.82}
+
+/* placeholder tag, reused on any block standing in for real photography/video */
+.ph{position:relative;overflow:hidden;background:
+    radial-gradient(120% 140% at 15% 0%, #1c1c1c 0%, #0d0d0d 55%),
+    repeating-linear-gradient(120deg, rgba(255,255,255,.02) 0 2px, transparent 2px 44px)}
+.ph-tag{position:absolute;right:12px;bottom:12px;font-family:Inter;font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.55);background:rgba(0,0,0,.4);border:1px solid rgba(245,243,239,.18);padding:6px 10px;z-index:2}
+.moto-mark{position:absolute;opacity:.14;filter:grayscale(1)}
+
+/* reveal-on-scroll */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+header.solid{background:rgba(13,13,13,.92);backdrop-filter:blur(6px);border-color:var(--line)}
+header .bar{display:flex;align-items:center;gap:20px;height:70px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo .bars{display:flex;gap:2px;height:22px}
+.logo .bars i{width:6px;display:block}
+.logo .bars i:nth-child(1){background:var(--verde)}
+.logo .bars i:nth-child(2){background:var(--bianco)}
+.logo .bars i:nth-child(3){background:var(--rosso)}
+.logo .word{font-family:"Bebas Neue";font-size:22px;letter-spacing:.02em;padding-top:2px}
+nav.main{display:none;margin-left:auto;align-items:center;gap:28px}
+nav.main a{font-family:"Bebas Neue";font-size:15px;letter-spacing:.06em;color:var(--mut)}
+nav.main a:hover{color:var(--bianco)}
+.wa-btn{display:none;margin-left:18px}
+.hamb{margin-left:auto;width:38px;height:38px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:none;cursor:pointer}
+.hamb span{width:18px;height:1.5px;background:var(--bianco)}
+@media(min-width:960px){nav.main{display:flex}.wa-btn{display:inline-flex}.hamb{display:none}}
+
+/* mobile menu */
+.mmenu{position:fixed;inset:0;background:var(--nero);z-index:99;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:0 32px;transform:translateY(-100%);transition:transform .35s ease}
+.mmenu.open{transform:translateY(0)}
+.mmenu a{font-family:"Bebas Neue";font-size:34px}
+@media(min-width:960px){.mmenu{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 0 64px}
+.hero .moto-mark{right:-8%;bottom:-6%;width:74%}
+.hero h1{font-size:clamp(46px,13vw,128px);margin-top:16px}
+.hero h1 em{font-style:normal;color:var(--rosso)}
+.hero .lede{max-width:520px;color:var(--mut);font-size:16.5px;margin-top:20px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.scrollcue{position:absolute;left:20px;bottom:26px;display:flex;align-items:center;gap:10px;font-family:Inter;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+.scrollcue .ln{width:1px;height:30px;background:linear-gradient(var(--rosso),transparent)}
+@media(min-width:760px){.wrap{padding-left:40px}.hero{padding:150px 0 90px}}
+
+section{padding:80px 0}
+@media(min-width:760px){section{padding:120px 0}}
+.sec-head{max-width:640px}
+.sec-head h2{font-size:clamp(34px,6vw,58px);margin-top:10px}
+.sec-head p{color:var(--mut);margin-top:14px;font-size:15.5px}
+
+/* brand showcase */
+.brands{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);margin-top:46px;border:1px solid var(--line)}
+@media(min-width:760px){.brands{grid-template-columns:1fr 1fr}}
+.bcard{position:relative;background:var(--nero2);min-height:280px;padding:34px 30px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.bcard .moto-mark{right:-14%;top:-10%;width:60%}
+.bcard h3{font-size:38px}
+.bcard p{color:var(--mut);font-size:14.5px;margin-top:8px;max-width:320px}
+.bcard .go{margin-top:18px;font-family:Inter;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--rosso)}
+.bcard:hover{background:#1c1c1c}
+
+/* model rail */
+.rail{display:flex;gap:16px;overflow-x:auto;margin-top:44px;padding-bottom:10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.rail::-webkit-scrollbar{height:0}
+.mcard{flex:0 0 240px;scroll-snap-align:start}
+.mcard .ph{height:180px}
+.mcard .mi{padding:16px 2px 0}
+.mcard .tag{font-family:Inter;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosso)}
+.mcard h4{font-size:24px;margin-top:6px}
+.mcard .enq{font-size:12px;color:var(--mut);margin-top:6px}
+@media(min-width:760px){.mcard{flex:0 0 280px}}
+
+/* store intro split */
+.split{display:grid;grid-template-columns:1fr;gap:36px;align-items:center}
+@media(min-width:860px){.split{grid-template-columns:1.1fr 1fr;gap:64px}}
+.split .ph{height:320px}
+@media(min-width:860px){.split .ph{height:460px}}
+.split h2{font-size:clamp(32px,5vw,46px)}
+.split p{color:var(--mut);font-size:15.5px;margin-top:16px;max-width:460px}
+.split.rev{grid-template-columns:1fr}
+@media(min-width:860px){.split.rev{grid-template-columns:1fr 1.1fr}}
+
+/* accessories banner */
+.banner{position:relative;min-height:340px;display:flex;align-items:flex-end;padding:36px 0}
+.banner .in{position:relative;z-index:2}
+.banner h2{font-size:clamp(38px,7vw,74px)}
+.banner p{color:var(--mut);margin-top:10px;max-width:420px;font-size:15px}
+.banner .btn{margin-top:22px}
+
+/* contact strip */
+.cstrip{background:var(--nero2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cgrid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line)}
+@media(min-width:860px){.cgrid{grid-template-columns:1fr 1fr}}
+.cgrid>div{background:var(--nero2);padding:44px 34px}
+.cgrid .ph{height:260px;margin:0 -34px -44px;width:calc(100% + 68px)}
+.hours{list-style:none;margin:22px 0 0;padding:0;font-size:14.5px;color:var(--mut)}
+.hours li{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.hours li span:last-child{color:var(--bianco)}
+.contact-cta{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px}
+
+/* footer */
+footer{padding:64px 0 0}
+.fgrid{display:grid;grid-template-columns:1fr;gap:36px;padding-bottom:50px;border-bottom:1px solid var(--line)}
+@media(min-width:760px){.fgrid{grid-template-columns:1.4fr 1fr 1fr 1fr}}
+.fcol h5{font-family:Inter;font-weight:600;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:16px}
+.fcol a{display:block;font-size:14.5px;color:var(--bianco);opacity:.85;margin-bottom:10px}
+.fcol a:hover{opacity:1;color:var(--rosso)}
+.fcol p{color:var(--mut);font-size:14px;max-width:280px}
+.group-row{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-family:Inter;font-size:12.5px;color:var(--mut);letter-spacing:.02em}
+.foot-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;padding:26px 0 40px;font-size:12.5px;color:var(--mut)}
+.foot-base a{color:var(--mut)}
+.foot-base a:hover{color:var(--bianco)}
+
+.wa-fab{position:fixed;right:18px;bottom:18px;z-index:90;width:56px;height:56px;border-radius:50%;background:var(--rosso);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap bar">
+    <a class="logo" href="#top">
+      <span class="bars"><i></i><i></i><i></i></span>
+      <span class="word">MOTOITALIA</span>
+    </a>
+    <nav class="main">
+      <a href="#piaggio">Piaggio</a>
+      <a href="#vespa">Vespa</a>
+      <a href="#guzzi">Moto Guzzi</a>
+      <a href="#aprilia">Aprilia</a>
+      <a href="#accessories">Accessories</a>
+      <a href="#store">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn fill wa-btn" href="#contact">WhatsApp Us</a>
+    <button class="hamb" id="hambBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu">
+  <a href="#piaggio">Piaggio</a>
+  <a href="#vespa">Vespa</a>
+  <a href="#guzzi">Moto Guzzi</a>
+  <a href="#aprilia">Aprilia</a>
+  <a href="#accessories">Accessories</a>
+  <a href="#store">About</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main id="top">
+
+  <section class="hero ph">
+    <svg class="moto-mark" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"><path d="M40 150 C40 120 70 100 100 100 C130 100 150 120 150 145 L150 150 M150 150 C150 175 175 190 200 190 C230 190 255 170 260 145 L340 145 C355 145 365 130 360 115 L340 90 L280 90 L260 60 L210 60 L190 90 L160 90" stroke="#F5F3EF" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="150" r="34" stroke="#F5F3EF" stroke-width="6" fill="none"/><circle cx="260" cy="150" r="34" stroke="#F5F3EF" stroke-width="6" fill="none"/></svg>
+    <span class="ph-tag">Placeholder — hero video pending Piaggio Group footage</span>
+    <div class="wrap">
+      <div class="eyebrow on rv">Larnaka, Cyprus</div>
+      <h1 class="rv">Four Italian<br>marques.<br><em>One address.</em></h1>
+      <p class="lede rv">Piaggio, Vespa, Moto Guzzi and Aprilia. Sales, service and genuine parts, from a shop that knows every one of them.</p>
+      <div class="ctas rv">
+        <a class="btn fill" href="#piaggio">Explore the Brands</a>
+        <a class="btn line" href="#store">Visit the Store</a>
+      </div>
+    </div>
+    <div class="scrollcue"><span class="ln"></span>Scroll</div>
+  </section>
+
+  <section id="brands-intro">
+    <div class="wrap sec-head rv">
+      <div class="eyebrow">The Brands</div>
+      <h2>Four marques, one dealer.</h2>
+      <p>Draft copy below, final brand positioning to be confirmed once Piaggio Group brand materials arrive.</p>
+    </div>
+    <div class="wrap">
+      <div class="brands">
+        <a class="bcard rv" href="#" id="piaggio">
+          <svg class="moto-mark" viewBox="0 0 200 200"><circle cx="140" cy="60" r="90" fill="none" stroke="#F5F3EF" stroke-width="5"/></svg>
+          <h3>Piaggio</h3>
+          <p>Scooters built for everyday Cyprus roads, from city commuting to weekend rides.</p>
+          <span class="go">Explore Piaggio →</span>
+        </a>
+        <a class="bcard rv" href="#" id="vespa">
+          <svg class="moto-mark" viewBox="0 0 200 200"><rect x="60" y="20" width="90" height="90" fill="none" stroke="#F5F3EF" stroke-width="5" transform="rotate(20 105 65)"/></svg>
+          <h3>Vespa</h3>
+          <p>The icon, reinvented every generation. Timeless design, modern engineering.</p>
+          <span class="go">Explore Vespa →</span>
+        </a>
+        <a class="bcard rv" href="#" id="guzzi">
+          <svg class="moto-mark" viewBox="0 0 200 200"><path d="M40 160 L160 40" stroke="#F5F3EF" stroke-width="5"/><path d="M40 40 L160 160" stroke="#F5F3EF" stroke-width="5"/></svg>
+          <h3>Moto Guzzi</h3>
+          <p>Italian heritage engineered for the open road. Handbuilt character since 1921.</p>
+          <span class="go">Explore Moto Guzzi →</span>
+        </a>
+        <a class="bcard rv" href="#" id="aprilia">
+          <svg class="moto-mark" viewBox="0 0 200 200"><polygon points="100,20 180,170 20,170" fill="none" stroke="#F5F3EF" stroke-width="5"/></svg>
+          <h3>Aprilia</h3>
+          <p>Race-bred performance for the street. Aprilia's racing DNA, road legal.</p>
+          <span class="go">Explore Aprilia →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sec-head rv">
+      <div class="eyebrow">Featured Models</div>
+      <h2>The current range.</h2>
+      <p>A cross-brand teaser, pulled through from each brand page. Enquire in store, no online pricing in Phase 1.</p>
+    </div>
+    <div class="wrap">
+      <div class="rail rv">
+        <div class="mcard"><div class="ph"><span class="ph-tag">Placeholder</span></div><div class="mi"><div class="tag">Piaggio</div><h4>MP3</h4><div class="enq">Enquire in store</div></div></div>
+        <div class="mcard"><div class="ph"><span class="ph-tag">Placeholder</span></div><div class="mi"><div class="tag">Vespa</div><h4>Primavera</h4><div class="enq">Enquire in store</div></div></div>
+        <div class="mcard"><div class="ph"><span class="ph-tag">Placeholder</span></div><div class="mi"><div class="tag">Moto Guzzi</div><h4>V7</h4><div class="enq">Enquire in store</div></div></div>
+        <div class="mcard"><div class="ph"><span class="ph-tag">Placeholder</span></div><div class="mi"><div class="tag">Aprilia</div><h4>RS 660</h4><div class="enq">Enquire in store</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="store">
+    <div class="wrap split">
+      <div class="ph rv"><span class="ph-tag">Placeholder — store photography pending</span></div>
+      <div class="rv">
+        <div class="eyebrow">About Moto Italia</div>
+        <h2>New ownership.<br>Same address.</h2>
+        <p>Draft copy, pending the client's store story. Moto Italia is under new ownership in Larnaka, bringing four of Europe's most recognisable motorcycle marques under one roof, with the sales and service experience to match.</p>
+        <div class="ctas" style="margin-top:24px"><a class="btn line" href="#contact">Our Story</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="accessories" class="banner ph">
+    <svg class="moto-mark" viewBox="0 0 300 300" style="right:0;top:0;width:60%"><circle cx="220" cy="80" r="120" fill="none" stroke="#F5F3EF" stroke-width="4"/></svg>
+    <span class="ph-tag">Placeholder — accessories photography pending</span>
+    <div class="wrap in rv">
+      <div class="eyebrow on">Accessories</div>
+      <h2>Gear up.</h2>
+      <p>Helmets, apparel, parts and care products for every marque we carry. Enquire in store, structured to become a full shop in a later phase.</p>
+      <a class="btn fill" href="#contact">Shop Accessories</a>
+    </div>
+  </section>
+
+  <section id="contact" class="cstrip" style="padding:0">
+    <div class="cgrid">
+      <div class="rv">
+        <div class="eyebrow">Visit Us</div>
+        <h2 style="font-size:clamp(30px,4.4vw,42px);margin-top:10px">Find us in Larnaka.</h2>
+        <ul class="hours">
+          <li><span>Monday – Friday</span><span>[Placeholder hours]</span></li>
+          <li><span>Saturday</span><span>[Placeholder hours]</span></li>
+          <li><span>Sunday</span><span>Closed</span></li>
+        </ul>
+        <div class="contact-cta">
+          <a class="btn fill" href="#">WhatsApp Us</a>
+          <a class="btn line" href="#">Get Directions</a>
+        </div>
+        <p style="color:var(--mut);font-size:13px;margin-top:20px">[Placeholder — store address, phone and WhatsApp number pending from client]</p>
+      </div>
+      <div class="ph rv"><span class="ph-tag">Placeholder — Google Maps embed</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fcol">
+        <a class="logo" href="#top" style="margin-bottom:16px">
+          <span class="bars"><i></i><i></i><i></i></span>
+          <span class="word">MOTOITALIA</span>
+        </a>
+        <p>Authorised Larnaka dealer for Piaggio, Vespa, Moto Guzzi and Aprilia, and the wider Piaggio Group range.</p>
+        <div class="group-row">Piaggio · Vespa · Moto Guzzi · Aprilia · Gilera · Derbi · Scarabeo</div>
+      </div>
+      <div class="fcol">
+        <h5>Brands</h5>
+        <a href="#piaggio">Piaggio</a>
+        <a href="#vespa">Vespa</a>
+        <a href="#guzzi">Moto Guzzi</a>
+        <a href="#aprilia">Aprilia</a>
+      </div>
+      <div class="fcol">
+        <h5>Shop</h5>
+        <a href="#accessories">Accessories</a>
+        <a href="#store">About / Store</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <h5>Visit</h5>
+        <p>[Placeholder address]<br>Larnaka, Cyprus</p>
+        <a href="#" style="margin-top:12px">WhatsApp</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Moto Italia. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> · Website by Wecomeone Marketing And Comms</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="#contact" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M17 14.5c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z" fill="#F5F3EF"/><path d="M12 2C6.48 2 2 6.35 2 11.7c0 1.9.55 3.67 1.5 5.18L2 22l5.3-1.4a10.2 10.2 0 0 0 4.7 1.15c5.52 0 10-4.35 10-9.7C22 6.35 17.52 2 12 2z" stroke="#F5F3EF" stroke-width="1.3" fill="none"/></svg>
+</a>
+
+<script>
+(function(){
+  var hdr=document.getElementById('hdr');
+  window.addEventListener('scroll',function(){
+    hdr.classList.toggle('solid',window.scrollY>40);
+  });
+  var hb=document.getElementById('hambBtn'), mm=document.getElementById('mmenu');
+  hb.addEventListener('click',function(){mm.classList.toggle('open');});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');});});
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  },{threshold:.15});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+})();
+</script>
+
+</body>
+</html>
