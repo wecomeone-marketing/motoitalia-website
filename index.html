@@ -53,6 +53,12 @@ img,svg{display:block;max-width:100%}
     repeating-linear-gradient(120deg, rgba(255,255,255,.02) 0 2px, transparent 2px 44px)}
 .ph-tag{position:absolute;right:12px;bottom:12px;font-family:Inter;font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.55);background:rgba(0,0,0,.4);border:1px solid rgba(245,243,239,.18);padding:6px 10px;z-index:2}
 .moto-mark{position:absolute;opacity:.14;filter:grayscale(1)}
+.photo{background-size:cover;background-position:center}
+.hero.photo::before,.banner.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.25) 0%,rgba(13,13,13,.45) 55%,rgba(13,13,13,.93) 100%);z-index:1}
+.hero .wrap,.hero .scrollcue{position:relative;z-index:2}
+.banner .in{position:relative;z-index:2}
+.bcard.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.1) 0%,rgba(13,13,13,.5) 55%,rgba(13,13,13,.92) 100%);z-index:1}
+.bcard h3,.bcard p,.bcard .go{position:relative;z-index:2}
 
 /* reveal-on-scroll */
 .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
@@ -199,9 +205,8 @@ footer{padding:64px 0 0}
 
 <main id="top">
 
-  <section class="hero ph">
-    <svg class="moto-mark" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"><path d="M40 150 C40 120 70 100 100 100 C130 100 150 120 150 145 L150 150 M150 150 C150 175 175 190 200 190 C230 190 255 170 260 145 L340 145 C355 145 365 130 360 115 L340 90 L280 90 L260 60 L210 60 L190 90 L160 90" stroke="#F5F3EF" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="150" r="34" stroke="#F5F3EF" stroke-width="6" fill="none"/><circle cx="260" cy="150" r="34" stroke="#F5F3EF" stroke-width="6" fill="none"/></svg>
-    <span class="ph-tag">Placeholder — hero video pending Piaggio Group footage</span>
+  <section class="hero photo" style="background-image:url('assets/ph/hero.jpg')">
+    <span class="ph-tag">Stock placeholder — hero video pending Piaggio Group footage</span>
     <div class="wrap">
       <div class="eyebrow on rv">Larnaka, Cyprus</div>
       <h1 class="rv">Four Italian<br>marques.<br><em>One address.</em></h1>
@@ -222,26 +227,26 @@ footer{padding:64px 0 0}
     </div>
     <div class="wrap">
       <div class="brands">
-        <a class="bcard rv" href="#" id="piaggio">
-          <svg class="moto-mark" viewBox="0 0 200 200"><circle cx="140" cy="60" r="90" fill="none" stroke="#F5F3EF" stroke-width="5"/></svg>
+        <a class="bcard photo rv" href="#" id="piaggio" style="background-image:url('assets/ph/piaggio.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
           <h3>Piaggio</h3>
           <p>Scooters built for everyday Cyprus roads, from city commuting to weekend rides.</p>
           <span class="go">Explore Piaggio →</span>
         </a>
-        <a class="bcard rv" href="#" id="vespa">
-          <svg class="moto-mark" viewBox="0 0 200 200"><rect x="60" y="20" width="90" height="90" fill="none" stroke="#F5F3EF" stroke-width="5" transform="rotate(20 105 65)"/></svg>
+        <a class="bcard photo rv" href="#" id="vespa" style="background-image:url('assets/ph/vespa.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
           <h3>Vespa</h3>
           <p>The icon, reinvented every generation. Timeless design, modern engineering.</p>
           <span class="go">Explore Vespa →</span>
         </a>
-        <a class="bcard rv" href="#" id="guzzi">
-          <svg class="moto-mark" viewBox="0 0 200 200"><path d="M40 160 L160 40" stroke="#F5F3EF" stroke-width="5"/><path d="M40 40 L160 160" stroke="#F5F3EF" stroke-width="5"/></svg>
+        <a class="bcard photo rv" href="#" id="guzzi" style="background-image:url('assets/ph/moto-guzzi.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
           <h3>Moto Guzzi</h3>
           <p>Italian heritage engineered for the open road. Handbuilt character since 1921.</p>
           <span class="go">Explore Moto Guzzi →</span>
         </a>
-        <a class="bcard rv" href="#" id="aprilia">
-          <svg class="moto-mark" viewBox="0 0 200 200"><polygon points="100,20 180,170 20,170" fill="none" stroke="#F5F3EF" stroke-width="5"/></svg>
+        <a class="bcard photo rv" href="#" id="aprilia" style="background-image:url('assets/ph/aprilia.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
           <h3>Aprilia</h3>
           <p>Race-bred performance for the street. Aprilia's racing DNA, road legal.</p>
           <span class="go">Explore Aprilia →</span>
@@ -258,17 +263,17 @@ footer{padding:64px 0 0}
     </div>
     <div class="wrap">
       <div class="rail rv">
-        <div class="mcard"><div class="ph"><span class="ph-tag">Placeholder</span></div><div class="mi"><div class="tag">Piaggio</div><h4>MP3</h4><div class="enq">Enquire in store</div></div></div>
-        <div class="mcard"><div class="ph"><span class="ph-tag">Placeholder</span></div><div class="mi"><div class="tag">Vespa</div><h4>Primavera</h4><div class="enq">Enquire in store</div></div></div>
-        <div class="mcard"><div class="ph"><span class="ph-tag">Placeholder</span></div><div class="mi"><div class="tag">Moto Guzzi</div><h4>V7</h4><div class="enq">Enquire in store</div></div></div>
-        <div class="mcard"><div class="ph"><span class="ph-tag">Placeholder</span></div><div class="mi"><div class="tag">Aprilia</div><h4>RS 660</h4><div class="enq">Enquire in store</div></div></div>
+        <div class="mcard"><div class="photo" style="height:180px;background-image:url('assets/ph/piaggio.jpg')"></div><div class="mi"><div class="tag">Piaggio</div><h4>MP3</h4><div class="enq">Enquire in store</div></div></div>
+        <div class="mcard"><div class="photo" style="height:180px;background-image:url('assets/ph/vespa.jpg')"></div><div class="mi"><div class="tag">Vespa</div><h4>Primavera</h4><div class="enq">Enquire in store</div></div></div>
+        <div class="mcard"><div class="photo" style="height:180px;background-image:url('assets/ph/moto-guzzi.jpg')"></div><div class="mi"><div class="tag">Moto Guzzi</div><h4>V7</h4><div class="enq">Enquire in store</div></div></div>
+        <div class="mcard"><div class="photo" style="height:180px;background-image:url('assets/ph/aprilia.jpg')"></div><div class="mi"><div class="tag">Aprilia</div><h4>RS 660</h4><div class="enq">Enquire in store</div></div></div>
       </div>
     </div>
   </section>
 
   <section id="store">
     <div class="wrap split">
-      <div class="ph rv"><span class="ph-tag">Placeholder — store photography pending</span></div>
+      <div class="ph photo rv" style="background-image:url('assets/ph/store.jpg')"><span class="ph-tag">Stock placeholder — store photography pending</span></div>
       <div class="rv">
         <div class="eyebrow">About Moto Italia</div>
         <h2>New ownership.<br>Same address.</h2>
@@ -278,9 +283,8 @@ footer{padding:64px 0 0}
     </div>
   </section>
 
-  <section id="accessories" class="banner ph">
-    <svg class="moto-mark" viewBox="0 0 300 300" style="right:0;top:0;width:60%"><circle cx="220" cy="80" r="120" fill="none" stroke="#F5F3EF" stroke-width="4"/></svg>
-    <span class="ph-tag">Placeholder — accessories photography pending</span>
+  <section id="accessories" class="banner photo" style="background-image:url('assets/ph/accessories.jpg');background-position:30% 15%">
+    <span class="ph-tag">Stock placeholder — accessories photography pending</span>
     <div class="wrap in rv">
       <div class="eyebrow on">Accessories</div>
       <h2>Gear up.</h2>
