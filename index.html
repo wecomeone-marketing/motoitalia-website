@@ -102,6 +102,14 @@ nav.main a:hover{color:var(--bianco)}
 
 section{padding:80px 0}
 @media(min-width:760px){section{padding:120px 0}}
+
+/* logo marquee */
+.marquee-strip{background:var(--nero2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:22px 0}
+.marquee-track{display:flex;width:max-content;animation:mq 24s linear infinite}
+.mq-group{display:flex;align-items:center;gap:52px;padding-right:52px;font-family:"Bebas Neue";font-size:21px;letter-spacing:.08em;color:var(--mut);white-space:nowrap}
+.mq-group i{width:5px;height:5px;border-radius:50%;background:var(--rosso);display:inline-block}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
 .sec-head{max-width:640px}
 .sec-head h2{font-size:clamp(34px,6vw,58px);margin-top:10px}
 .sec-head p{color:var(--mut);margin-top:14px;font-size:15.5px}
@@ -111,20 +119,23 @@ section{padding:80px 0}
 @media(min-width:760px){.brands{grid-template-columns:1fr 1fr}}
 .bcard{position:relative;background:var(--nero2);min-height:280px;padding:34px 30px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
 .bcard .moto-mark{right:-14%;top:-10%;width:60%}
+.bcard .est{position:relative;z-index:2;display:inline-block;font-family:Inter;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosso);margin-bottom:8px}
 .bcard h3{font-size:38px}
 .bcard p{color:var(--mut);font-size:14.5px;margin-top:8px;max-width:320px}
 .bcard .go{margin-top:18px;font-family:Inter;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--rosso)}
 .bcard:hover{background:#1c1c1c}
 
-/* model rail */
+/* current range — spec cards, deliberately photo-free so it reads distinctly from the brand grid above */
+.range-strip{background:var(--nero2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .rail{display:flex;gap:16px;overflow-x:auto;margin-top:44px;padding-bottom:10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .rail::-webkit-scrollbar{height:0}
-.mcard{flex:0 0 240px;scroll-snap-align:start}
-.mcard .ph{height:180px}
-.mcard .mi{padding:16px 2px 0}
+.mcard{flex:0 0 240px;scroll-snap-align:start;background:var(--nero);border:1px solid var(--line);padding:26px 22px}
+.mcard .bar{width:32px;height:3px;background:var(--rosso)}
+.mcard .mi{padding:20px 0 0}
 .mcard .tag{font-family:Inter;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosso)}
-.mcard h4{font-size:24px;margin-top:6px}
-.mcard .enq{font-size:12px;color:var(--mut);margin-top:6px}
+.mcard h4{font-size:26px;margin-top:6px}
+.mcard .spec{color:var(--mut);font-size:13.5px;margin-top:10px;line-height:1.6}
+.mcard .enq{font-family:Inter;font-weight:600;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-top:18px}
 @media(min-width:760px){.mcard{flex:0 0 280px}}
 
 /* store intro split */
@@ -143,6 +154,13 @@ section{padding:80px 0}
 .banner h2{font-size:clamp(38px,7vw,74px)}
 .banner p{color:var(--mut);margin-top:10px;max-width:420px;font-size:15px}
 .banner .btn{margin-top:22px}
+
+/* trust strip — separates the two full-bleed photo banners */
+.trust-strip{background:var(--nero2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:60px 0}
+.trust-grid{display:grid;grid-template-columns:1fr;gap:36px;text-align:center}
+@media(min-width:760px){.trust-grid{grid-template-columns:repeat(3,1fr);text-align:left}}
+.trust-item .num{font-family:"Bebas Neue";font-size:52px;color:var(--rosso);line-height:1}
+.trust-item p{color:var(--mut);margin-top:10px;font-size:14.5px}
 
 /* contact strip */
 .cstrip{background:var(--nero2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -221,34 +239,45 @@ footer{padding:64px 0 0}
     <div class="scrollcue"><span class="ln"></span>Scroll</div>
   </section>
 
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <div class="mq-group">PIAGGIO<i></i>VESPA<i></i>MOTO GUZZI<i></i>APRILIA<i></i></div>
+      <div class="mq-group" aria-hidden="true">PIAGGIO<i></i>VESPA<i></i>MOTO GUZZI<i></i>APRILIA<i></i></div>
+    </div>
+  </div>
+
   <section id="brands-intro">
     <div class="wrap sec-head rv">
       <div class="eyebrow">The Brands</div>
       <h2>Four marques, one dealer.</h2>
-      <p>Draft copy below, final brand positioning to be confirmed once Piaggio Group brand materials arrive.</p>
+      <p>Piaggio Group has shaped Italian motoring since 1884 — from Vespa's post-war scooters to Moto Guzzi's handbuilt V-twins and Aprilia's racing DNA. Draft copy below, final brand positioning to be confirmed once Piaggio Group brand materials arrive.</p>
     </div>
     <div class="wrap">
       <div class="brands">
         <a class="bcard photo rv" href="#" id="piaggio" style="background-image:url('assets/ph/piaggio.jpg')">
           <span class="ph-tag">Stock placeholder</span>
+          <span class="est">Est. 1884</span>
           <h3>Piaggio</h3>
           <p>Scooters built for everyday Cyprus roads, from city commuting to weekend rides.</p>
           <span class="go">Explore Piaggio →</span>
         </a>
         <a class="bcard photo rv" href="#" id="vespa" style="background-image:url('assets/ph/vespa.jpg')">
           <span class="ph-tag">Stock placeholder</span>
+          <span class="est">Since 1946</span>
           <h3>Vespa</h3>
           <p>The icon, reinvented every generation. Timeless design, modern engineering.</p>
           <span class="go">Explore Vespa →</span>
         </a>
         <a class="bcard photo rv" href="#" id="guzzi" style="background-image:url('assets/ph/moto-guzzi.jpg')">
           <span class="ph-tag">Stock placeholder</span>
+          <span class="est">Since 1921</span>
           <h3>Moto Guzzi</h3>
           <p>Italian heritage engineered for the open road. Handbuilt character since 1921.</p>
           <span class="go">Explore Moto Guzzi →</span>
         </a>
         <a class="bcard photo rv" href="#" id="aprilia" style="background-image:url('assets/ph/aprilia.jpg')">
           <span class="ph-tag">Stock placeholder</span>
+          <span class="est">Since 1945</span>
           <h3>Aprilia</h3>
           <p>Race-bred performance for the street. Aprilia's racing DNA, road legal.</p>
           <span class="go">Explore Aprilia →</span>
@@ -257,7 +286,7 @@ footer{padding:64px 0 0}
     </div>
   </section>
 
-  <section>
+  <section class="range-strip">
     <div class="wrap sec-head rv">
       <div class="eyebrow">Featured Models</div>
       <h2>The current range.</h2>
@@ -265,10 +294,10 @@ footer{padding:64px 0 0}
     </div>
     <div class="wrap">
       <div class="rail rv">
-        <div class="mcard"><div class="photo" style="height:180px;background-image:url('assets/ph/piaggio.jpg')"></div><div class="mi"><div class="tag">Piaggio</div><h4>MP3</h4><div class="enq">Enquire in store</div></div></div>
-        <div class="mcard"><div class="photo" style="height:180px;background-image:url('assets/ph/vespa.jpg')"></div><div class="mi"><div class="tag">Vespa</div><h4>Primavera</h4><div class="enq">Enquire in store</div></div></div>
-        <div class="mcard"><div class="photo" style="height:180px;background-image:url('assets/ph/moto-guzzi.jpg')"></div><div class="mi"><div class="tag">Moto Guzzi</div><h4>V7</h4><div class="enq">Enquire in store</div></div></div>
-        <div class="mcard"><div class="photo" style="height:180px;background-image:url('assets/ph/aprilia.jpg')"></div><div class="mi"><div class="tag">Aprilia</div><h4>RS 660</h4><div class="enq">Enquire in store</div></div></div>
+        <div class="mcard"><div class="bar"></div><div class="mi"><div class="tag">Piaggio</div><h4>MP3</h4><p class="spec">Tilting three-wheel scooter, built for city stability.</p><div class="enq">Enquire in store →</div></div></div>
+        <div class="mcard"><div class="bar"></div><div class="mi"><div class="tag">Vespa</div><h4>Primavera</h4><p class="spec">The modern classic, reinvented for everyday Larnaka streets.</p><div class="enq">Enquire in store →</div></div></div>
+        <div class="mcard"><div class="bar"></div><div class="mi"><div class="tag">Moto Guzzi</div><h4>V7</h4><p class="spec">Handbuilt V-twin heritage, timeless café-racer stance.</p><div class="enq">Enquire in store →</div></div></div>
+        <div class="mcard"><div class="bar"></div><div class="mi"><div class="tag">Aprilia</div><h4>RS 660</h4><p class="spec">Race-bred middleweight, track DNA built for the road.</p><div class="enq">Enquire in store →</div></div></div>
       </div>
     </div>
   </section>
@@ -292,6 +321,16 @@ footer{padding:64px 0 0}
       <h2>Gear up.</h2>
       <p>Helmets, apparel, parts and care products for every marque we carry. Enquire in store, structured to become a full shop in a later phase.</p>
       <a class="btn fill" href="#contact">Shop Accessories</a>
+    </div>
+  </section>
+
+  <section class="trust-strip">
+    <div class="wrap">
+      <div class="trust-grid">
+        <div class="trust-item rv"><div class="num">4</div><p>Italian marques under one roof — Piaggio, Vespa, Moto Guzzi and Aprilia.</p></div>
+        <div class="trust-item rv"><div class="num">100%</div><p>Genuine parts and manufacturer-trained service, no grey imports.</p></div>
+        <div class="trust-item rv"><div class="num">1</div><p>Larnaka address for sales, service and genuine parts.</p></div>
+      </div>
     </div>
   </section>
 
@@ -344,15 +383,11 @@ footer{padding:64px 0 0}
       <div class="fcol">
         <h5>Working Hours</h5>
         <p style="line-height:1.8;color:var(--bianco)">
-          Mon, Tue, Thu, Fri<br>8:45am–1pm, 3–6pm
+          Monday – Friday<br>08:45 – 13:00 &amp; 15:00 – 18:00
         </p>
         <p style="margin-top:14px;line-height:1.8;color:var(--bianco)">
-          Wednesday<br>8:45am–1pm
+          Wednesday &amp; Saturday<br>08:45 – 13:00
         </p>
-        <p style="margin-top:14px;line-height:1.8;color:var(--bianco)">
-          Saturday<br>9am–1pm
-        </p>
-        <p style="margin-top:14px;line-height:1.8;color:var(--bianco)">Sunday · Closed</p>
       </div>
     </div>
     <div class="foot-base">
