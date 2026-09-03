@@ -415,6 +415,31 @@ footer{padding:64px 0 0}
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); } });
   },{threshold:.15});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+  // logo marquee — rebuild with just enough repeats so each half is wider than
+  // the viewport. Without this, on wide screens the two static copies run out
+  // before the loop wraps, leaving a blank gap that reads as the strip "breaking".
+  var mqTrack=document.querySelector('.marquee-track');
+  if(mqTrack){
+    var mqUnit='PIAGGIO<i></i>VESPA<i></i>MOTO GUZZI<i></i>APRILIA<i></i>';
+    var mqResizeT;
+    function buildMarquee(){
+      var strip=mqTrack.parentElement;
+      var target=strip.getBoundingClientRect().width+200;
+      mqTrack.innerHTML='<div class="mq-group">'+mqUnit+'</div>';
+      var unitWidth=mqTrack.querySelector('.mq-group').getBoundingClientRect().width || 1;
+      var reps=Math.max(1,Math.ceil(target/unitWidth));
+      var halfHTML=mqUnit.repeat(reps);
+      mqTrack.innerHTML=
+        '<div class="mq-group">'+halfHTML+'</div>'+
+        '<div class="mq-group" aria-hidden="true">'+halfHTML+'</div>';
+    }
+    buildMarquee();
+    window.addEventListener('resize',function(){
+      clearTimeout(mqResizeT);
+      mqResizeT=setTimeout(buildMarquee,200);
+    });
+  }
 })();
 </script>
 
