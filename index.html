@@ -51,7 +51,7 @@ img,svg{display:block;max-width:100%}
 .btn:hover{opacity:.82}
 
 /* placeholder tag, reused on any block standing in for real photography/video */
-.ph{position:relative;overflow:hidden;background:
+.ph{position:relative;overflow:hidden;background-image:
     radial-gradient(120% 140% at 15% 0%, #1c1c1c 0%, #0d0d0d 55%),
     repeating-linear-gradient(120deg, rgba(255,255,255,.02) 0 2px, transparent 2px 44px)}
 .ph-tag{position:absolute;right:12px;bottom:12px;font-family:Inter;font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.55);background:rgba(0,0,0,.4);border:1px solid rgba(245,243,239,.18);padding:6px 10px;z-index:2}
@@ -117,7 +117,7 @@ section{padding:80px 0}
 /* brand showcase */
 .brands{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);margin-top:46px;border:1px solid var(--line)}
 @media(min-width:760px){.brands{grid-template-columns:1fr 1fr}}
-.bcard{position:relative;background:var(--nero2);min-height:280px;padding:34px 30px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.bcard{position:relative;background-color:var(--nero2);min-height:280px;padding:34px 30px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
 .bcard .moto-mark{right:-14%;top:-10%;width:60%}
 .bcard .est{position:relative;z-index:2;display:inline-block;font-family:Inter;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosso);margin-bottom:8px}
 .bcard h3{font-size:38px}
@@ -129,14 +129,14 @@ section{padding:80px 0}
 .range-strip{background:var(--nero2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .rail{display:flex;gap:16px;overflow-x:auto;margin-top:44px;padding-bottom:10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .rail::-webkit-scrollbar{height:0}
-.mcard{flex:0 0 240px;scroll-snap-align:start;background:var(--nero);border:1px solid var(--line);padding:26px 22px}
+.mcard{position:relative;flex:0 0 260px;min-height:360px;scroll-snap-align:start;background-color:var(--nero);border:1px solid var(--line);padding:26px 22px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.mcard.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.1) 0%,rgba(13,13,13,.25) 45%,rgba(13,13,13,.88) 100%);z-index:1}
+.mcard .mtop,.mcard .enq{position:relative;z-index:2}
 .mcard .bar{width:32px;height:3px;background:var(--verde)}
-.mcard .mi{padding:20px 0 0}
-.mcard .tag{font-family:Inter;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosso)}
-.mcard h4{font-size:26px;margin-top:6px}
-.mcard .spec{color:var(--mut);font-size:13.5px;margin-top:10px;line-height:1.6}
-.mcard .enq{font-family:Inter;font-weight:600;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-top:18px}
-@media(min-width:760px){.mcard{flex:0 0 280px}}
+.mcard .tag{font-family:Inter;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosso);margin-top:14px}
+.mcard h4{font-size:26px;margin-top:6px;color:var(--bianco)}
+.mcard .enq{font-family:Inter;font-weight:600;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--bianco)}
+@media(min-width:760px){.mcard{flex:0 0 320px;min-height:440px}}
 
 /* store intro split */
 .split{display:grid;grid-template-columns:1fr;gap:36px;align-items:center}
@@ -294,10 +294,26 @@ footer{padding:64px 0 0}
     </div>
     <div class="wrap">
       <div class="rail rv">
-        <div class="mcard"><div class="bar"></div><div class="mi"><div class="tag">Piaggio</div><h4>MP3</h4><p class="spec">Tilting three-wheel scooter, built for city stability.</p><div class="enq">Enquire in store →</div></div></div>
-        <div class="mcard"><div class="bar"></div><div class="mi"><div class="tag">Vespa</div><h4>Primavera</h4><p class="spec">The modern classic, reinvented for everyday Larnaka streets.</p><div class="enq">Enquire in store →</div></div></div>
-        <div class="mcard"><div class="bar"></div><div class="mi"><div class="tag">Moto Guzzi</div><h4>V7</h4><p class="spec">Handbuilt V-twin heritage, timeless café-racer stance.</p><div class="enq">Enquire in store →</div></div></div>
-        <div class="mcard"><div class="bar"></div><div class="mi"><div class="tag">Aprilia</div><h4>RS 660</h4><p class="spec">Race-bred middleweight, track DNA built for the road.</p><div class="enq">Enquire in store →</div></div></div>
+        <div class="mcard photo rv" style="background-image:url('assets/ph/piaggio-mp3.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
+          <div class="mtop"><div class="bar"></div><div class="tag">Piaggio</div><h4>MP3</h4></div>
+          <div class="enq">Enquire in store →</div>
+        </div>
+        <div class="mcard photo rv" style="background-image:url('assets/ph/vespa-primavera.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
+          <div class="mtop"><div class="bar"></div><div class="tag">Vespa</div><h4>Primavera</h4></div>
+          <div class="enq">Enquire in store →</div>
+        </div>
+        <div class="mcard photo rv" style="background-image:url('assets/ph/moto-guzzi-v7.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
+          <div class="mtop"><div class="bar"></div><div class="tag">Moto Guzzi</div><h4>V7</h4></div>
+          <div class="enq">Enquire in store →</div>
+        </div>
+        <div class="mcard photo rv" style="background-image:url('assets/ph/aprilia-rs660.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
+          <div class="mtop"><div class="bar"></div><div class="tag">Aprilia</div><h4>RS 660</h4></div>
+          <div class="enq">Enquire in store →</div>
+        </div>
       </div>
     </div>
   </section>
