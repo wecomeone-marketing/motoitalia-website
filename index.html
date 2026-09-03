@@ -459,6 +459,33 @@ footer{padding:64px 0 0}
       mqResizeT=setTimeout(buildMarquee,200);
     });
   }
+
+  // #contact is the last anchorable section before the footer, so on tall
+  // viewports there isn't enough page left below it for the browser to
+  // scroll it flush under the fixed header — the scroll hits the bottom of
+  // the document first, leaving the previous (white) section peeking out
+  // above it. Give the footer just enough extra bottom space, computed per
+  // viewport height, to close that gap — and none at all on short/mobile
+  // viewports where it isn't needed.
+  var contactEl=document.getElementById('contact');
+  var footerEl=document.querySelector('footer');
+  if(contactEl&&footerEl){
+    var fixT;
+    function fixContactScrollSpace(){
+      footerEl.style.paddingBottom='';
+      var marginTop=parseFloat(getComputedStyle(contactEl).scrollMarginTop)||0;
+      var contactAbsTop=contactEl.getBoundingClientRect().top+window.scrollY;
+      var spaceBelow=document.documentElement.scrollHeight-contactAbsTop;
+      var needed=window.innerHeight-marginTop;
+      var extra=Math.max(0,needed-spaceBelow);
+      if(extra>0){ footerEl.style.paddingBottom=extra+'px'; }
+    }
+    fixContactScrollSpace();
+    window.addEventListener('resize',function(){
+      clearTimeout(fixT);
+      fixT=setTimeout(fixContactScrollSpace,200);
+    });
+  }
 })();
 </script>
 
