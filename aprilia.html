@@ -1,22 +1,24 @@
 ﻿<!doctype html>
 <!--
-  MOTO ITALIA — About page, Phase 1
+  MOTO ITALIA &mdash; Aprilia brand page, Phase 1
   Prepared by Wecomeone Marketing And Comms, September 2026
 
-  Shares the header, footer, CSS and scroll/menu behaviour with the
-  homepage (moto-italia-homepage-concept.html) so every page reads as
-  one site. Keep the two files' shared chrome in sync when either changes.
+  Shares the header, footer, CSS and scroll/menu behaviour with the rest
+  of the site (moto-italia-homepage-concept.html, about.html,
+  accessories.html) so every page reads as one site. Keep the shared
+  chrome in sync across files when any of them changes.
 
-  Anywhere real photography or copy is still pending from the client,
-  the block is built at final size and styling with a small PLACEHOLDER
-  tag, so swapping in the real asset later is a drop-in.
+  Brand story copy and model line-up are draft placeholders pending real
+  brand materials and photography from Piaggio Group / the client, tagged
+  inline so swapping them in later is a drop-in, same pattern as the rest
+  of the Phase 1 site.
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About Us — Moto Italia</title>
-<meta name="description" content="Moto Italia is the authorised Larnaka dealer for Piaggio, Vespa, Moto Guzzi and Aprilia, under new ownership at the same address.">
+<title>Aprilia &mdash; Moto Italia</title>
+<meta name="description" content="Aprilia motorcycles at Moto Italia in Larnaka &mdash; sales, service and genuine parts. Enquire in store.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
@@ -56,7 +58,6 @@ img,svg{display:block;max-width:100%}
     radial-gradient(120% 140% at 15% 0%, #1c1c1c 0%, #0d0d0d 55%),
     repeating-linear-gradient(120deg, rgba(255,255,255,.02) 0 2px, transparent 2px 44px)}
 .ph-tag{position:absolute;right:12px;bottom:12px;font-family:Inter;font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.55);background:rgba(0,0,0,.4);border:1px solid rgba(245,243,239,.18);padding:6px 10px;z-index:2}
-.moto-mark{position:absolute;opacity:.14;filter:grayscale(1)}
 .photo{background-size:cover;background-position:center}
 .hero.photo::before,.banner.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.25) 0%,rgba(13,13,13,.45) 55%,rgba(13,13,13,.93) 100%);z-index:1}
 .hero .wrap{position:relative;z-index:2}
@@ -112,6 +113,27 @@ section{padding:80px 0}
 .split.rev{grid-template-columns:1fr}
 @media(min-width:860px){.split.rev{grid-template-columns:1fr 1.1fr}}
 
+/* model grid — same card system as the homepage's Featured Models rail,
+   fixed at 3 columns here since each brand page shows 3 models */
+.rail{display:grid;grid-template-columns:1fr;gap:16px;margin-top:44px}
+@media(min-width:600px){.rail{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:860px){.rail{grid-template-columns:repeat(3,1fr)}}
+.mcard{position:relative;min-height:360px;background-color:var(--nero2);padding:18px 22px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.mcard.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.1) 0%,rgba(13,13,13,.25) 45%,rgba(13,13,13,.88) 100%);z-index:1}
+.mcard .mtop,.mcard .enq{position:relative;z-index:2}
+.mcard .tag{font-family:Inter;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bianco);text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.mcard h4{font-size:26px;margin-top:6px;color:var(--bianco);text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.mcard .enq{font-family:Inter;font-weight:600;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--bianco)}
+.mcard .ph-tag{top:12px;bottom:auto;right:12px}
+.mcard.ph .tag{color:var(--rosso);text-shadow:none}
+.mcard.ph h4{color:var(--bianco);text-shadow:none}
+.mcard.ph .enq{color:var(--rosso)}
+
+/* other brands strip */
+.obrands{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.obrands a{display:inline-flex;align-items:center;gap:10px;font-family:Inter;font-weight:600;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bianco);border:1px solid var(--line);padding:14px 22px;transition:border-color .2s,color .2s}
+.obrands a:hover{border-color:var(--rosso);color:var(--rosso)}
+
 /* full-bleed banner */
 .banner{position:relative;min-height:340px;display:flex;align-items:flex-end;padding:36px 0}
 .banner .in{position:relative;z-index:2}
@@ -166,44 +188,85 @@ footer{padding:64px 0 0}
 
 <main>
 
-  <section class="pintro photo" style="background-image:url('assets/ph/store.jpg')">
-    <span class="ph-tag">Stock placeholder — store photography pending</span>
+  <section class="pintro photo" style="background-image:url('assets/ph/aprilia.jpg')">
+    <span class="ph-tag">Stock placeholder &mdash; Aprilia brand photography pending from Piaggio Group</span>
     <div class="wrap">
-      <div class="eyebrow on rv">About Moto Italia</div>
-      <h1 class="rv">New ownership.<br>Same address.</h1>
-      <p class="lede rv">Four Italian marques, one Larnaka address, and a team that knows every one of them.</p>
+      <div class="eyebrow on rv">Since 1945</div>
+      <h1 class="rv">Aprilia</h1>
+      <p class="lede rv">Race-bred performance for the street. Aprilia's racing DNA, road legal, sold and serviced in Larnaka.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap split rv">
-      <div class="ph photo" style="background-image:url('assets/ph/store.jpg')"><span class="ph-tag">Stock placeholder — store photography pending</span></div>
+      <div class="ph photo" style="background-image:url('assets/ph/aprilia.jpg')"><span class="ph-tag">Stock placeholder</span></div>
       <div>
-        <div class="eyebrow">Our Story</div>
-        <h2>Built on the same street, backed by new ownership.</h2>
-        <p>Moto Italia has changed hands, not location. The same Larnaka address now operates under new ownership, with a renewed focus on doing right by four of the most recognised names in Italian motorcycling: Piaggio, Vespa, Moto Guzzi and Aprilia.</p>
-        <p>Draft copy, final story pending from the client. This section will carry the real history of the dealership, how long it has traded in Larnaka, and what has changed under the new ownership, once that detail is confirmed.</p>
-        <div class="ctas" style="margin-top:24px"><a class="btn line" href="https://maps.app.goo.gl/K2wCmmJ4D2DadaAm9" target="_blank" rel="noopener">Get Directions</a></div>
+        <div class="eyebrow">The Brand</div>
+        <h2>Racing DNA, road legal.</h2>
+        <p>Aprilia built its name on the racetrack, and that engineering carries straight through to its road bikes, sharp handling, strong performance, unmistakably Italian. Draft copy, final brand story pending materials from Piaggio Group.</p>
+        <p>Moto Italia carries the full Aprilia range as an authorised Larnaka dealer, with manufacturer-trained service and genuine parts, no grey imports.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap sec-head rv">
+      <div class="eyebrow">The Range</div>
+      <h2>Featured Aprilia models.</h2>
+      <p>A draft selection from the current range. No online pricing in Phase 1, enquire in store for availability and pricing.</p>
+    </div>
+    <div class="wrap">
+      <div class="rail">
+        <div class="mcard photo rv" style="background-image:url('assets/ph/aprilia-rs660.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
+          <div class="mtop"><div class="tag">Aprilia</div><h4>RS 660</h4></div>
+          <a class="enq" href="#contact">Enquire in store &rarr;</a>
+        </div>
+        <div class="mcard ph rv">
+          <span class="ph-tag">Model photography pending</span>
+          <div class="mtop"><div class="tag">Aprilia</div><h4>Tuono 660</h4></div>
+          <a class="enq" href="#contact">Enquire in store &rarr;</a>
+        </div>
+        <div class="mcard ph rv">
+          <span class="ph-tag">Model photography pending</span>
+          <div class="mtop"><div class="tag">Aprilia</div><h4>SR GT</h4></div>
+          <a class="enq" href="#contact">Enquire in store &rarr;</a>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="banner photo" style="background-image:url('assets/ph/store.jpg');background-position:30% 15%">
-    <span class="ph-tag">Stock placeholder — shop photography pending</span>
+    <span class="ph-tag">Stock placeholder</span>
     <div class="wrap in rv">
-      <div class="eyebrow on">At The Shop</div>
-      <h2>Sales, service and genuine parts.</h2>
-      <p>Walk in for a test ride, book a service, or find the part your bike actually needs. Real shop photography to replace this placeholder once available.</p>
+      <div class="eyebrow on">Why Aprilia</div>
+      <h2>Built from racing.</h2>
+      <p>Test ride an Aprilia at the shop, or book a service for the one you already own.</p>
       <a class="btn fill" href="index.html#contact">Plan Your Visit</a>
     </div>
   </section>
 
+  <section>
+    <div class="wrap sec-head rv">
+      <div class="eyebrow">Also At Moto Italia</div>
+      <h2>The other three marques.</h2>
+      <p>One Larnaka address, four Italian brands. Sales, service and genuine parts for all of them.</p>
+    </div>
+    <div class="wrap">
+      <div class="obrands rv">
+      <a href="piaggio.html">Piaggio &rarr;</a>
+      <a href="vespa.html">Vespa &rarr;</a>
+      <a href="moto-guzzi.html">Moto Guzzi &rarr;</a>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="banner photo" style="background-image:url('assets/ph/visit.jpg');background-position:center 68%">
-    <span class="ph-tag">Stock placeholder — store photography pending</span>
+    <span class="ph-tag">Stock placeholder &mdash; store photography pending</span>
     <div class="wrap in rv">
       <div class="eyebrow on">Visit Us</div>
       <h2>Find us in Larnaka.</h2>
-      <p>Sales, service and genuine parts for Piaggio, Vespa, Moto Guzzi and Aprilia — right in the heart of town.</p>
+      <p>Sales, service and genuine parts for Piaggio, Vespa, Moto Guzzi and Aprilia &mdash; right in the heart of town.</p>
       <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:24px">
         <a class="btn fill" href="tel:+35724667400" style="margin-top:0">Call Us</a>
         <a class="btn line" href="https://maps.app.goo.gl/K2wCmmJ4D2DadaAm9" target="_blank" rel="noopener" style="margin-top:0">Get Directions</a>
@@ -243,16 +306,16 @@ footer{padding:64px 0 0}
       <div class="fcol">
         <h5>Working Hours</h5>
         <p style="line-height:1.8;color:var(--bianco)">
-          Monday – Friday<br>08:45 – 13:00 &amp;<br>15:00 – 18:00
+          Monday &ndash; Friday<br>08:45 &ndash; 13:00 &amp;<br>15:00 &ndash; 18:00
         </p>
         <p style="margin-top:14px;line-height:1.8;color:var(--bianco)">
-          Wednesday &amp; Saturday<br>08:45 – 13:00
+          Wednesday &amp; Saturday<br>08:45 &ndash; 13:00
         </p>
       </div>
     </div>
     <div class="foot-base">
-      <span>© 2026 Moto Italia. All rights reserved.</span>
-      <span><a href="#">Privacy Policy</a> · Website by Wecomeone Marketing And Comms</span>
+      <span>&copy; 2026 Moto Italia. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &middot; Website by Wecomeone Marketing And Comms</span>
     </div>
   </div>
 </footer>
