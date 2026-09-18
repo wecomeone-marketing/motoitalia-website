@@ -1,0 +1,332 @@
+<!doctype html>
+<!--
+  MOTO ITALIA — About page, Phase 1
+  Prepared by Wecomeone Marketing And Comms, September 2026
+
+  Shares the header, footer, CSS and scroll/menu behaviour with the
+  homepage (moto-italia-homepage-concept.html) so every page reads as
+  one site. Keep the two files' shared chrome in sync when either changes.
+
+  Anywhere real photography or copy is still pending from the client,
+  the block is built at final size and styling with a small PLACEHOLDER
+  tag, so swapping in the real asset later is a drop-in.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Us — Moto Italia</title>
+<meta name="description" content="Moto Italia is the authorised Larnaka dealer for Piaggio, Vespa, Moto Guzzi and Aprilia, under new ownership at the same address.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rosso:#DF0123;
+  --nero:#0D0D0D;
+  --nero2:#161616;
+  --bianco:#F5F3EF;
+  --verde:#069147;
+  --line:rgba(245,243,239,.14);
+  --mut:rgba(245,243,239,.58);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:96px}
+body{margin:0;background:var(--nero);color:var(--bianco);font-family:Inter,system-ui,sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:"Bebas Neue",Inter,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.94;margin:0}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+@media(min-width:760px){.wrap{padding:0 40px}}
+
+.eyebrow{font-family:Inter;font-weight:600;text-transform:uppercase;letter-spacing:.22em;font-size:11.5px;color:var(--mut)}
+.eyebrow.on{color:var(--rosso)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:Inter;font-weight:600;font-size:13.5px;text-transform:uppercase;letter-spacing:.1em;padding:15px 26px;border-radius:2px;transition:opacity .2s}
+.btn.fill{background:var(--rosso);color:var(--bianco)}
+.btn.line{border:1px solid rgba(245,243,239,.4);color:var(--bianco)}
+.btn:hover{opacity:.82}
+
+/* placeholder tag, reused on any block standing in for real photography/video */
+.ph{position:relative;overflow:hidden;background-image:
+    radial-gradient(120% 140% at 15% 0%, #1c1c1c 0%, #0d0d0d 55%),
+    repeating-linear-gradient(120deg, rgba(255,255,255,.02) 0 2px, transparent 2px 44px)}
+.ph-tag{position:absolute;right:12px;bottom:12px;font-family:Inter;font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.55);background:rgba(0,0,0,.4);border:1px solid rgba(245,243,239,.18);padding:6px 10px;z-index:2}
+.moto-mark{position:absolute;opacity:.14;filter:grayscale(1)}
+.photo{background-size:cover;background-position:center}
+.hero.photo::before,.banner.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.25) 0%,rgba(13,13,13,.45) 55%,rgba(13,13,13,.93) 100%);z-index:1}
+.hero .wrap{position:relative;z-index:2}
+.banner .in{position:relative;z-index:2}
+
+/* reveal-on-scroll */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+header.solid{background:rgba(13,13,13,.92);backdrop-filter:blur(6px);border-color:var(--line)}
+header .bar{display:flex;align-items:center;gap:20px;height:70px}
+.logo{display:flex;align-items:center}
+.logo img{height:28px;width:auto;display:block}
+nav.main{display:none;margin-left:auto;align-items:center;gap:28px}
+nav.main a{font-family:"Bebas Neue";font-size:15px;letter-spacing:.06em;color:var(--mut)}
+nav.main a:hover{color:var(--bianco)}
+nav.main a[href$="#contact"]{color:var(--rosso)}
+nav.main a[href$="#contact"]:hover{color:var(--rosso)}
+.mmenu a[href$="#contact"]{color:var(--rosso)}
+.hamb{margin-left:auto;width:38px;height:38px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:none;cursor:pointer}
+.hamb span{width:18px;height:1.5px;background:var(--bianco)}
+@media(min-width:960px){nav.main{display:flex}.hamb{display:none}}
+
+/* mobile menu */
+.mmenu{position:fixed;inset:0;background:var(--nero);z-index:99;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:0 32px;transform:translateY(-100%);transition:transform .35s ease}
+.mmenu.open{transform:translateY(0)}
+.mmenu a{font-family:"Bebas Neue";font-size:34px}
+@media(min-width:960px){.mmenu{display:none}}
+
+@media(min-width:760px){.wrap{padding-left:40px}}
+
+section{padding:80px 0}
+@media(min-width:760px){section{padding:120px 0}}
+.sec-head{max-width:640px}
+.sec-head h2{font-size:clamp(34px,6vw,58px);margin-top:10px}
+.sec-head p{color:var(--mut);margin-top:14px;font-size:15.5px}
+
+/* page intro banner */
+.pintro{position:relative;min-height:56svh;display:flex;align-items:flex-end;padding:150px 0 64px}
+.pintro h1{font-size:clamp(42px,9vw,90px);margin-top:14px}
+.pintro .lede{max-width:520px;color:var(--mut);font-size:16.5px;margin-top:18px}
+
+/* split (photo + copy) */
+.split{display:grid;grid-template-columns:1fr;gap:36px;align-items:center}
+@media(min-width:860px){.split{grid-template-columns:1.1fr 1fr;gap:64px}}
+.split .ph{height:320px}
+@media(min-width:860px){.split .ph{height:460px}}
+.split h2{font-size:clamp(32px,5vw,46px)}
+.split p{color:var(--mut);font-size:15.5px;margin-top:16px;max-width:460px}
+.split p+p{margin-top:14px}
+.split.rev{grid-template-columns:1fr}
+@media(min-width:860px){.split.rev{grid-template-columns:1fr 1.1fr}}
+
+/* full-bleed banner */
+.banner{position:relative;min-height:340px;display:flex;align-items:flex-end;padding:36px 0}
+.banner .in{position:relative;z-index:2}
+.banner h2{font-size:clamp(38px,7vw,74px)}
+.banner p{color:var(--mut);margin-top:10px;max-width:420px;font-size:15px}
+.banner .btn{margin-top:22px}
+
+/* trust strip, white section */
+.trust-strip{background:var(--bianco);border-top:1px solid rgba(13,13,13,.1);border-bottom:1px solid rgba(13,13,13,.1);padding:100px 0}
+@media(min-width:760px){.trust-strip{padding:140px 0}}
+.trust-strip .eyebrow{color:var(--rosso)}
+.trust-strip .sec-head h2{color:var(--nero)}
+.trust-grid{display:grid;grid-template-columns:1fr;gap:36px;text-align:center;margin-top:46px}
+@media(min-width:760px){.trust-grid{grid-template-columns:repeat(3,1fr);text-align:left}}
+.trust-item{display:flex;flex-direction:column;align-items:center;gap:14px}
+@media(min-width:760px){.trust-item{flex-direction:row;align-items:center;gap:22px}}
+.trust-item .num{font-family:"Bebas Neue";font-size:52px;color:var(--rosso);line-height:1;flex:none}
+.trust-item p{color:var(--nero);font-size:14.5px}
+
+/* footer */
+footer{padding:64px 0 0}
+.fgrid{display:grid;grid-template-columns:1fr;gap:36px;padding-bottom:50px;border-bottom:1px solid var(--line)}
+@media(min-width:760px){.fgrid{grid-template-columns:1.3fr 1fr 1fr 1fr 1fr}}
+.fcol h5{font-family:Inter;font-weight:600;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:16px}
+.fcol a{display:block;font-size:14.5px;color:var(--bianco);opacity:.85;margin-bottom:10px}
+.fcol a:hover{opacity:1;color:var(--rosso)}
+.fcol p{color:var(--mut);font-size:14px;max-width:280px}
+.foot-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;padding:26px 0 40px;font-size:12.5px;color:var(--mut)}
+.foot-base a{color:var(--mut)}
+.foot-base a:hover{color:var(--bianco)}
+
+.wa-fab{position:fixed;right:18px;bottom:18px;z-index:90;width:56px;height:56px;border-radius:50%;background:var(--rosso);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap bar">
+    <a class="logo" href="index.html">
+      <img src="assets/logo.svg" alt="Moto Italia">
+    </a>
+    <nav class="main">
+      <a href="index.html#piaggio">Piaggio</a>
+      <a href="index.html#vespa">Vespa</a>
+      <a href="index.html#guzzi">Moto Guzzi</a>
+      <a href="index.html#aprilia">Aprilia</a>
+      <a href="index.html#accessories">Accessories</a>
+      <a href="about.html">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <button class="hamb" id="hambBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu">
+  <a href="index.html#piaggio">Piaggio</a>
+  <a href="index.html#vespa">Vespa</a>
+  <a href="index.html#guzzi">Moto Guzzi</a>
+  <a href="index.html#aprilia">Aprilia</a>
+  <a href="index.html#accessories">Accessories</a>
+  <a href="about.html">About</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<main>
+
+  <section class="pintro photo" style="background-image:url('assets/ph/store.jpg')">
+    <span class="ph-tag">Stock placeholder — store photography pending</span>
+    <div class="wrap">
+      <div class="eyebrow on rv">About Moto Italia</div>
+      <h1 class="rv">New ownership.<br>Same address.</h1>
+      <p class="lede rv">Four Italian marques, one Larnaka address, and a team that knows every one of them.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split rv">
+      <div class="ph photo" style="background-image:url('assets/ph/store.jpg')"><span class="ph-tag">Stock placeholder — store photography pending</span></div>
+      <div>
+        <div class="eyebrow">Our Story</div>
+        <h2>Built on the same street, backed by new ownership.</h2>
+        <p>Moto Italia has changed hands, not location. The same Larnaka address now operates under new ownership, with a renewed focus on doing right by four of the most recognised names in Italian motorcycling: Piaggio, Vespa, Moto Guzzi and Aprilia.</p>
+        <p>Draft copy, final story pending from the client. This section will carry the real history of the dealership, how long it has traded in Larnaka, and what has changed under the new ownership, once that detail is confirmed.</p>
+        <div class="ctas" style="margin-top:24px"><a class="btn line" href="https://maps.app.goo.gl/K2wCmmJ4D2DadaAm9" target="_blank" rel="noopener">Get Directions</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div class="eyebrow">Why Moto Italia</div>
+        <h2>Four marques. One standard.</h2>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-item rv"><div class="num">4</div><p>Authorised Larnaka dealer for Piaggio, Vespa, Moto Guzzi and Aprilia, under one roof.</p></div>
+        <div class="trust-item rv"><div class="num">100%</div><p>Genuine parts and manufacturer trained service. No grey imports.</p></div>
+        <div class="trust-item rv"><div class="num">1</div><p>Team that knows every marque, not just one.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="banner photo" style="background-image:url('assets/ph/store.jpg');background-position:30% 15%">
+    <span class="ph-tag">Stock placeholder — shop photography pending</span>
+    <div class="wrap in rv">
+      <div class="eyebrow on">At The Shop</div>
+      <h2>Sales, service and genuine parts.</h2>
+      <p>Walk in for a test ride, book a service, or find the part your bike actually needs. Real shop photography to replace this placeholder once available.</p>
+      <a class="btn fill" href="index.html#contact">Plan Your Visit</a>
+    </div>
+  </section>
+
+  <section id="contact" class="banner photo" style="background-image:url('assets/ph/visit.jpg');background-position:center 68%">
+    <span class="ph-tag">Stock placeholder — store photography pending</span>
+    <div class="wrap in rv">
+      <div class="eyebrow on">Visit Us</div>
+      <h2>Find us in Larnaka.</h2>
+      <p>Sales, service and genuine parts for Piaggio, Vespa, Moto Guzzi and Aprilia — right in the heart of town.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:24px">
+        <a class="btn fill" href="tel:+35724667400" style="margin-top:0">Call Us</a>
+        <a class="btn line" href="https://maps.app.goo.gl/K2wCmmJ4D2DadaAm9" target="_blank" rel="noopener" style="margin-top:0">Get Directions</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fcol">
+        <a class="logo" href="index.html" style="margin-bottom:16px">
+          <img src="assets/logo.svg" alt="Moto Italia">
+        </a>
+        <p>Authorised Larnaka dealer for Piaggio, Vespa, Moto Guzzi and Aprilia.</p>
+      </div>
+      <div class="fcol">
+        <h5>Brands</h5>
+        <a href="index.html#piaggio">Piaggio</a>
+        <a href="index.html#vespa">Vespa</a>
+        <a href="index.html#guzzi">Moto Guzzi</a>
+        <a href="index.html#aprilia">Aprilia</a>
+      </div>
+      <div class="fcol">
+        <h5>Shop</h5>
+        <a href="index.html#accessories">Accessories</a>
+        <a href="about.html">About / Store</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <h5>Visit</h5>
+        <a href="https://www.google.com/maps/search/?api=1&query=2+Pentadaktylou+Street+Larnaca+6030" target="_blank" rel="noopener">2 Pentadaktylou Street, Larnaca 6030</a>
+        <a href="tel:+35724667400">Tel. 24 667 400</a>
+      </div>
+      <div class="fcol">
+        <h5>Working Hours</h5>
+        <p style="line-height:1.8;color:var(--bianco)">
+          Monday – Friday<br>08:45 – 13:00 &amp;<br>15:00 – 18:00
+        </p>
+        <p style="margin-top:14px;line-height:1.8;color:var(--bianco)">
+          Wednesday &amp; Saturday<br>08:45 – 13:00
+        </p>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Moto Italia. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> · Website by Wecomeone Marketing And Comms</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="index.html#contact" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M17 14.5c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z" fill="#F5F3EF"/><path d="M12 2C6.48 2 2 6.35 2 11.7c0 1.9.55 3.67 1.5 5.18L2 22l5.3-1.4a10.2 10.2 0 0 0 4.7 1.15c5.52 0 10-4.35 10-9.7C22 6.35 17.52 2 12 2z" stroke="#F5F3EF" stroke-width="1.3" fill="none"/></svg>
+</a>
+
+<script>
+(function(){
+  var hdr=document.getElementById('hdr');
+  window.addEventListener('scroll',function(){
+    hdr.classList.toggle('solid',window.scrollY>40);
+  });
+  var hb=document.getElementById('hambBtn'), mm=document.getElementById('mmenu');
+  hb.addEventListener('click',function(){mm.classList.toggle('open');});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');});});
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  },{threshold:.15});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+  // #contact is the last anchorable section before the footer, so on tall
+  // viewports there isn't enough page left below it for the browser to
+  // scroll it flush under the fixed header. Give the footer just enough
+  // extra bottom space, computed per viewport height, to close that gap.
+  var contactEl=document.getElementById('contact');
+  var footerEl=document.querySelector('footer');
+  if(contactEl&&footerEl){
+    var fixT;
+    function fixContactScrollSpace(){
+      footerEl.style.paddingBottom='';
+      var marginTop=parseFloat(getComputedStyle(contactEl).scrollMarginTop)||0;
+      var contactAbsTop=contactEl.getBoundingClientRect().top+window.scrollY;
+      var spaceBelow=document.documentElement.scrollHeight-contactAbsTop;
+      var needed=window.innerHeight-marginTop;
+      var extra=Math.max(0,needed-spaceBelow);
+      if(extra>0){ footerEl.style.paddingBottom=extra+'px'; }
+    }
+    fixContactScrollSpace();
+    window.addEventListener('resize',function(){
+      clearTimeout(fixT);
+      fixT=setTimeout(fixContactScrollSpace,200);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
