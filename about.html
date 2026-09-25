@@ -112,6 +112,17 @@ section{padding:80px 0}
 .split.rev{grid-template-columns:1fr}
 @media(min-width:860px){.split.rev{grid-template-columns:1fr 1.1fr}}
 
+/* brand showcase — same card system as the homepage's Four Marques section */
+.brands{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(13,13,13,.1);margin-top:46px;border:1px solid rgba(13,13,13,.1)}
+@media(min-width:640px){.brands{grid-template-columns:1fr 1fr}}
+.bcard{position:relative;background-color:var(--nero2);min-height:280px;padding:34px 30px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.bcard.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.1) 0%,rgba(13,13,13,.5) 55%,rgba(13,13,13,.92) 100%);z-index:1}
+.bcard h3,.bcard p,.bcard .go,.bcard .est{position:relative;z-index:2}
+.bcard .est{display:inline-block;font-family:Inter;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosso);margin-bottom:8px}
+.bcard h3{font-size:38px}
+.bcard p{color:var(--mut);font-size:14.5px;margin-top:8px;max-width:320px}
+.bcard .go{margin-top:18px;font-family:Inter;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--rosso)}
+
 /* full-bleed banner */
 .banner{position:relative;min-height:340px;display:flex;align-items:flex-end;padding:36px 0}
 .banner .in{position:relative;z-index:2}
@@ -198,6 +209,46 @@ footer{padding:64px 0 0}
     </div>
   </section>
 
+  <section>
+    <div class="wrap sec-head rv">
+      <div class="eyebrow">The Brands</div>
+      <h2>Four marques, one address.</h2>
+      <p>Piaggio Group has shaped Italian motoring since 1884 — from Vespa's post-war scooters to Moto Guzzi's handbuilt V-twins and Aprilia's racing DNA. Draft copy below, final brand positioning to be confirmed once Piaggio Group brand materials arrive.</p>
+    </div>
+    <div class="wrap">
+      <div class="brands">
+        <a class="bcard photo rv" href="piaggio.html" style="background-image:url('assets/ph/piaggio.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
+          <span class="est">Est. 1884</span>
+          <h3>Piaggio</h3>
+          <p>Scooters built for everyday Cyprus roads, from city commuting to weekend rides.</p>
+          <span class="go">Explore Piaggio &rarr;</span>
+        </a>
+        <a class="bcard photo rv" href="vespa.html" style="background-image:url('assets/ph/vespa.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
+          <span class="est">Since 1946</span>
+          <h3>Vespa</h3>
+          <p>The icon, reinvented every generation. Timeless design, modern engineering.</p>
+          <span class="go">Explore Vespa &rarr;</span>
+        </a>
+        <a class="bcard photo rv" href="moto-guzzi.html" style="background-image:url('assets/ph/moto-guzzi.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
+          <span class="est">Since 1921</span>
+          <h3>Moto Guzzi</h3>
+          <p>Italian heritage engineered for the open road. Handbuilt character since 1921.</p>
+          <span class="go">Explore Moto Guzzi &rarr;</span>
+        </a>
+        <a class="bcard photo rv" href="aprilia.html" style="background-image:url('assets/ph/aprilia.jpg')">
+          <span class="ph-tag">Stock placeholder</span>
+          <span class="est">Since 1945</span>
+          <h3>Aprilia</h3>
+          <p>Race-bred performance for the street. Aprilia's racing DNA, road legal.</p>
+          <span class="go">Explore Aprilia &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="banner photo" style="background-image:url('assets/ph/visit.jpg');background-position:center 68%">
     <span class="ph-tag">Stock placeholder — store photography pending</span>
     <div class="wrap in rv">
@@ -252,7 +303,7 @@ footer{padding:64px 0 0}
     </div>
     <div class="foot-base">
       <span>© 2026 Moto Italia. All rights reserved.</span>
-      <span><a href="#">Privacy Policy</a> · Website by Wecomeone Marketing And Comms</span>
+      <span><a href="privacy.html">Privacy Policy</a> · Website by Wecomeone Marketing And Comms</span>
     </div>
   </div>
 </footer>
