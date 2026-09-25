@@ -113,19 +113,30 @@ section{padding:80px 0}
 .split.rev{grid-template-columns:1fr}
 @media(min-width:860px){.split.rev{grid-template-columns:1fr 1.1fr}}
 
-/* model grid — compact tile system so a brand with a long range (Aprilia,
-   Vespa) reads cleanly at any model count, not just the original 3-up cards */
-.mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:34px 18px;margin-top:44px}
-@media(min-width:560px){.mgrid{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:860px){.mgrid{grid-template-columns:repeat(4,1fr)}}
-@media(min-width:1180px){.mgrid{grid-template-columns:repeat(5,1fr)}}
-.mitem{display:block}
-.mitem .thumb{position:relative;aspect-ratio:4/3;background-color:var(--nero2);background-size:cover;background-position:center;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+/* model slider — centered when the range fits the screen, becomes a
+   horizontal swipe/scroll strip with nav arrows and a progress track once
+   it doesn't (brands like Aprilia and Vespa run long) */
+.mslider-wrap{position:relative;margin-top:44px}
+.mslider{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x proximity;justify-content:safe center;padding:6px 4px 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.mslider::-webkit-scrollbar{display:none}
+.mitem{display:block;flex:0 0 152px;scroll-snap-align:start}
+@media(min-width:480px){.mitem{flex-basis:180px}}
+@media(min-width:860px){.mitem{flex-basis:210px}}
+.mitem .thumb{position:relative;aspect-ratio:4/3;background-color:var(--nero2);background-size:cover;background-position:center;overflow:hidden;transition:transform .25s ease}
 .mitem:hover .thumb{transform:translateY(-5px)}
 .mitem .thumb .ph-tag{font-size:8.5px;letter-spacing:.1em;padding:4px 7px;right:8px;bottom:8px}
-.mitem .mname{margin-top:13px;font-size:18px;letter-spacing:.02em;color:var(--rosso);transition:color .2s}
+.mitem .mname{margin-top:13px;font-size:18px;letter-spacing:.02em;color:var(--rosso);text-align:center;transition:color .2s}
 .mitem:hover .mname{color:var(--bianco)}
-.mgrid-note{margin-top:22px;font-size:12.5px;color:var(--mut)}
+.mslide-btn{position:absolute;top:70px;width:40px;height:40px;border-radius:50%;background:rgba(13,13,13,.72);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;padding:0;transition:opacity .2s,border-color .2s}
+.mslide-btn:hover{border-color:var(--rosso)}
+.mslide-btn svg{width:15px;height:15px;stroke:var(--bianco)}
+.mslide-btn.prev{left:-8px}
+.mslide-btn.next{right:-8px}
+.mslide-btn[disabled]{opacity:.2;pointer-events:none}
+@media(max-width:640px){.mslide-btn{display:none}}
+.mtrack{height:2px;background:var(--line);margin-top:20px;position:relative;overflow:hidden;border-radius:2px}
+.mtrack .fill{position:absolute;top:0;left:0;height:100%;background:var(--rosso);border-radius:2px}
+.mgrid-note{margin-top:18px;font-size:12.5px;color:var(--mut)}
 
 /* other brands strip */
 .obrands{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
@@ -214,52 +225,104 @@ footer{padding:64px 0 0}
       <p>Tap any model to enquire in store. No online pricing in Phase 1.</p>
     </div>
     <div class="wrap">
-      <div class="mgrid">
-        <a class="mitem rv" href="#contact">
-          <div class="thumb photo" style="background-image:url('assets/ph/aprilia-rs660.jpg')">
-            <span class="ph-tag">Stock placeholder</span>
-          </div>
-          <div class="mname">RS 660</div>
-        </a>
-        <a class="mitem rv" href="#contact">
-          <div class="thumb ph">
-            <span class="ph-tag">Photo pending</span>
-          </div>
-          <div class="mname">Tuono 660</div>
-        </a>
-        <a class="mitem rv" href="#contact">
-          <div class="thumb ph">
-            <span class="ph-tag">Photo pending</span>
-          </div>
-          <div class="mname">SR GT</div>
-        </a>
+      <div class="mslider-wrap rv">
+        <button class="mslide-btn prev" aria-label="Previous models" disabled><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="mslide-btn next" aria-label="Next models"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+        <div class="mslider">
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">RSV4</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">Tuono V4</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb photo" style="background-image:url('assets/ph/aprilia-rs660.jpg')">
+              <span class="ph-tag">Stock placeholder</span>
+            </div>
+            <div class="mname">RS 660</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">Tuono 660</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">Tuareg</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">RS 457</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">Tuono 457</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">RS 125</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">Tuono 125</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">SX 125</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">RX 125</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">SR GT 400</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">SR GT</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">SXR</div>
+          </a>
+          <a class="mitem rv" href="#contact">
+            <div class="thumb ph">
+              <span class="ph-tag">Photo pending</span>
+            </div>
+            <div class="mname">SR</div>
+          </a>
+        </div>
+        <div class="mtrack"><div class="fill"></div></div>
       </div>
-      <p class="mgrid-note rv">Draft line-up shown, photography added as it becomes available.</p>
-    </div>
-  </section>
-
-  <section class="banner photo" style="background-image:url('assets/ph/store.jpg');background-position:30% 15%">
-    <span class="ph-tag">Stock placeholder</span>
-    <div class="wrap in rv">
-      <div class="eyebrow on">Why Aprilia</div>
-      <h2>Built from racing.</h2>
-      <p>Test ride an Aprilia at the shop, or book a service for the one you already own.</p>
-      <a class="btn fill" href="index.html#contact">Plan Your Visit</a>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap sec-head rv">
-      <div class="eyebrow">Also At Moto Italia</div>
-      <h2>The other three marques.</h2>
-      <p>One Larnaka address, four Italian brands. Sales, service and genuine parts for all of them.</p>
-    </div>
-    <div class="wrap">
-      <div class="obrands rv">
-      <a href="piaggio.html">Piaggio &rarr;</a>
-      <a href="vespa.html">Vespa &rarr;</a>
-      <a href="moto-guzzi.html">Moto Guzzi &rarr;</a>
-      </div>
+      <p class="mgrid-note rv">Model line-up pulled from the official range, to be confirmed against what Moto Italia actually stocks. Photography added as it becomes available.</p>
     </div>
   </section>
 
@@ -340,6 +403,24 @@ footer{padding:64px 0 0}
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); } });
   },{threshold:.15});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+  document.querySelectorAll('.mslider-wrap').forEach(function(w){
+    var track=w.querySelector('.mslider'), prev=w.querySelector('.prev'), next=w.querySelector('.next'), fill=w.querySelector('.mtrack .fill'), tr=w.querySelector('.mtrack');
+    function update(){
+      var max=track.scrollWidth-track.clientWidth;
+      if(max<=4){ if(tr)tr.style.display='none'; if(prev)prev.style.display='none'; if(next)next.style.display='none'; return; }
+      var thumb=Math.max(12,track.clientWidth/track.scrollWidth*100);
+      var left=(track.scrollLeft/max)*(100-thumb);
+      if(fill){ fill.style.width=thumb+'%'; fill.style.left=left+'%'; }
+      if(prev) prev.disabled=track.scrollLeft<=2;
+      if(next) next.disabled=track.scrollLeft>=max-2;
+    }
+    track.addEventListener('scroll',update);
+    window.addEventListener('resize',update);
+    if(prev) prev.addEventListener('click',function(){track.scrollBy({left:-track.clientWidth*.8,behavior:'smooth'});});
+    if(next) next.addEventListener('click',function(){track.scrollBy({left:track.clientWidth*.8,behavior:'smooth'});});
+    update();
+  });
 
   // #contact is the last anchorable section before the footer, so on tall
   // viewports there isn't enough page left below it for the browser to
