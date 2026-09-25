@@ -113,21 +113,19 @@ section{padding:80px 0}
 .split.rev{grid-template-columns:1fr}
 @media(min-width:860px){.split.rev{grid-template-columns:1fr 1.1fr}}
 
-/* model grid — same card system as the homepage's Featured Models rail,
-   fixed at 3 columns here since each brand page shows 3 models */
-.rail{display:grid;grid-template-columns:1fr;gap:16px;margin-top:44px}
-@media(min-width:600px){.rail{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:860px){.rail{grid-template-columns:repeat(3,1fr)}}
-.mcard{position:relative;min-height:360px;background-color:var(--nero2);padding:18px 22px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
-.mcard.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.1) 0%,rgba(13,13,13,.25) 45%,rgba(13,13,13,.88) 100%);z-index:1}
-.mcard .mtop,.mcard .enq{position:relative;z-index:2}
-.mcard .tag{font-family:Inter;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bianco);text-shadow:0 2px 10px rgba(0,0,0,.7)}
-.mcard h4{font-size:26px;margin-top:6px;color:var(--bianco);text-shadow:0 2px 10px rgba(0,0,0,.7)}
-.mcard .enq{font-family:Inter;font-weight:600;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--bianco)}
-.mcard .ph-tag{top:12px;bottom:auto;right:12px}
-.mcard.ph .tag{color:var(--rosso);text-shadow:none}
-.mcard.ph h4{color:var(--bianco);text-shadow:none}
-.mcard.ph .enq{color:var(--rosso)}
+/* model grid — compact tile system so a brand with a long range (Aprilia,
+   Vespa) reads cleanly at any model count, not just the original 3-up cards */
+.mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:34px 18px;margin-top:44px}
+@media(min-width:560px){.mgrid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:860px){.mgrid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1180px){.mgrid{grid-template-columns:repeat(5,1fr)}}
+.mitem{display:block}
+.mitem .thumb{position:relative;aspect-ratio:4/3;background-color:var(--nero2);background-size:cover;background-position:center;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.mitem:hover .thumb{transform:translateY(-5px)}
+.mitem .thumb .ph-tag{font-size:8.5px;letter-spacing:.1em;padding:4px 7px;right:8px;bottom:8px}
+.mitem .mname{margin-top:13px;font-size:18px;letter-spacing:.02em;color:var(--rosso);transition:color .2s}
+.mitem:hover .mname{color:var(--bianco)}
+.mgrid-note{margin-top:22px;font-size:12.5px;color:var(--mut)}
 
 /* other brands strip */
 .obrands{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
@@ -212,27 +210,31 @@ footer{padding:64px 0 0}
   <section>
     <div class="wrap sec-head rv">
       <div class="eyebrow">The Range</div>
-      <h2>Featured Moto Guzzi models.</h2>
-      <p>A draft selection from the current range. No online pricing in Phase 1, enquire in store for availability and pricing.</p>
+      <h2>All Moto Guzzi models.</h2>
+      <p>Tap any model to enquire in store. No online pricing in Phase 1.</p>
     </div>
     <div class="wrap">
-      <div class="rail">
-        <div class="mcard photo rv" style="background-image:url('assets/ph/moto-guzzi-v7.jpg')">
-          <span class="ph-tag">Stock placeholder</span>
-          <div class="mtop"><div class="tag">Moto Guzzi</div><h4>V7</h4></div>
-          <a class="enq" href="#contact">Enquire in store &rarr;</a>
-        </div>
-        <div class="mcard ph rv">
-          <span class="ph-tag">Model photography pending</span>
-          <div class="mtop"><div class="tag">Moto Guzzi</div><h4>V85 TT</h4></div>
-          <a class="enq" href="#contact">Enquire in store &rarr;</a>
-        </div>
-        <div class="mcard ph rv">
-          <span class="ph-tag">Model photography pending</span>
-          <div class="mtop"><div class="tag">Moto Guzzi</div><h4>V100 Mandello</h4></div>
-          <a class="enq" href="#contact">Enquire in store &rarr;</a>
-        </div>
+      <div class="mgrid">
+        <a class="mitem rv" href="#contact">
+          <div class="thumb photo" style="background-image:url('assets/ph/moto-guzzi-v7.jpg')">
+            <span class="ph-tag">Stock placeholder</span>
+          </div>
+          <div class="mname">V7</div>
+        </a>
+        <a class="mitem rv" href="#contact">
+          <div class="thumb ph">
+            <span class="ph-tag">Photo pending</span>
+          </div>
+          <div class="mname">V85 TT</div>
+        </a>
+        <a class="mitem rv" href="#contact">
+          <div class="thumb ph">
+            <span class="ph-tag">Photo pending</span>
+          </div>
+          <div class="mname">V100 Mandello</div>
+        </a>
       </div>
+      <p class="mgrid-note rv">Draft line-up shown, photography added as it becomes available.</p>
     </div>
   </section>
 
@@ -315,7 +317,7 @@ footer{padding:64px 0 0}
     </div>
     <div class="foot-base">
       <span>&copy; 2026 Moto Italia. All rights reserved.</span>
-      <span><a href="#">Privacy Policy</a> &middot; Website by Wecomeone Marketing And Comms</span>
+      <span><a href="privacy.html">Privacy Policy</a> &middot; Website by Wecomeone Marketing And Comms</span>
     </div>
   </div>
 </footer>
