@@ -137,6 +137,17 @@ section{padding:80px 0}
 .mtrack .fill{position:absolute;top:0;left:0;height:100%;background:var(--rosso);border-radius:2px}
 .mgrid-note{margin-top:18px;font-size:12.5px;color:var(--mut)}
 
+/* model lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(13,13,13,.92);z-index:300;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lb-inner{max-width:720px;width:100%;text-align:center}
+.lb-img{width:100%;aspect-ratio:4/3;background-color:var(--bianco);background-size:contain;background-repeat:no-repeat;background-position:center;border-radius:2px}
+.lb-name{margin-top:22px;font-family:'Bebas Neue';font-size:32px;letter-spacing:.02em;color:var(--bianco)}
+.lb-enq{margin-top:16px}
+.lb-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:border-color .2s}
+.lb-close:hover{border-color:var(--rosso)}
+.lb-close svg{width:18px;height:18px;stroke:var(--bianco)}
+
 /* other brands strip */
 .obrands{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
 .obrands a{display:inline-flex;align-items:center;gap:10px;font-family:Inter;font-weight:600;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bianco);border:1px solid var(--line);padding:14px 22px;transition:border-color .2s,color .2s}
@@ -353,6 +364,17 @@ footer{padding:64px 0 0}
   </div>
 </footer>
 
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="lb-inner">
+    <div class="lb-img" id="lbImg"></div>
+    <div class="lb-name" id="lbName"></div>
+    <a class="btn fill lb-enq" href="#contact" id="lbEnquire">Enquire in store</a>
+  </div>
+</div>
+
 <a class="wa-fab" href="index.html#contact" aria-label="WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M17 14.5c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z" fill="#F5F3EF"/><path d="M12 2C6.48 2 2 6.35 2 11.7c0 1.9.55 3.67 1.5 5.18L2 22l5.3-1.4a10.2 10.2 0 0 0 4.7 1.15c5.52 0 10-4.35 10-9.7C22 6.35 17.52 2 12 2z" stroke="#F5F3EF" stroke-width="1.3" fill="none"/></svg>
 </a>
@@ -389,6 +411,32 @@ footer{padding:64px 0 0}
     if(next) next.addEventListener('click',function(){track.scrollBy({left:track.clientWidth*.8,behavior:'smooth'});});
     update();
   });
+
+  var lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbName=document.getElementById('lbName'), lbClose=document.getElementById('lbClose'), lbEnquire=document.getElementById('lbEnquire');
+  function openLightbox(bg,name){
+    lbImg.style.backgroundImage=bg;
+    lbName.textContent=name;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeLightbox(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  document.querySelectorAll('.mitem').forEach(function(item){
+    item.addEventListener('click',function(e){
+      var thumb=item.querySelector('.thumb'), name=item.querySelector('.mname');
+      if(!thumb||!name) return;
+      e.preventDefault();
+      openLightbox(thumb.style.backgroundImage,name.textContent);
+    });
+  });
+  lbClose.addEventListener('click',closeLightbox);
+  lbEnquire.addEventListener('click',closeLightbox);
+  lb.addEventListener('click',function(e){ if(e.target===lb) closeLightbox(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLightbox(); });
 
   // #contact is the last anchorable section before the footer, so on tall
   // viewports there isn't enough page left below it for the browser to
