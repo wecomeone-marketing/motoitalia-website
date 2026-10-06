@@ -147,6 +147,13 @@ section{padding:80px 0}
 .lb-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:border-color .2s}
 .lb-close:hover{border-color:var(--rosso)}
 .lb-close svg{width:18px;height:18px;stroke:var(--bianco)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:border-color .2s,opacity .2s}
+.lb-nav:hover{border-color:var(--rosso)}
+.lb-nav svg{width:20px;height:20px;stroke:var(--bianco)}
+.lb-nav.prev{left:20px}
+.lb-nav.next{right:20px}
+.lb-nav[disabled]{opacity:.2;pointer-events:none}
+@media(max-width:640px){.lb-nav{width:40px;height:40px}.lb-nav.prev{left:8px}.lb-nav.next{right:8px}}
 
 /* other brands strip */
 .obrands{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
@@ -324,6 +331,12 @@ footer{padding:64px 0 0}
   <button class="lb-close" id="lbClose" aria-label="Close">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Previous model">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <button class="lb-nav next" id="lbNext" aria-label="Next model">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
   <div class="lb-inner">
     <div class="lb-img" id="lbImg"></div>
     <div class="lb-name" id="lbName"></div>
@@ -368,10 +381,21 @@ footer{padding:64px 0 0}
     update();
   });
 
-  var lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbName=document.getElementById('lbName'), lbClose=document.getElementById('lbClose'), lbEnquire=document.getElementById('lbEnquire');
-  function openLightbox(bg,name){
-    lbImg.style.backgroundImage=bg;
-    lbName.textContent=name;
+  var lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbName=document.getElementById('lbName'), lbClose=document.getElementById('lbClose'), lbEnquire=document.getElementById('lbEnquire'), lbPrev=document.getElementById('lbPrev'), lbNext=document.getElementById('lbNext');
+  var lbItems=Array.prototype.slice.call(document.querySelectorAll('.mitem'));
+  var lbIndex=-1;
+  function renderLightbox(i){
+    var item=lbItems[i];
+    var thumb=item.querySelector('.thumb'), name=item.querySelector('.mname');
+    if(!thumb||!name) return;
+    lbIndex=i;
+    lbImg.style.backgroundImage=thumb.style.backgroundImage;
+    lbName.textContent=name.textContent;
+    lbPrev.disabled=lbIndex<=0;
+    lbNext.disabled=lbIndex>=lbItems.length-1;
+  }
+  function openLightbox(i){
+    renderLightbox(i);
     lb.classList.add('open');
     lb.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
@@ -381,18 +405,36 @@ footer{padding:64px 0 0}
     lb.setAttribute('aria-hidden','true');
     document.body.style.overflow='';
   }
-  document.querySelectorAll('.mitem').forEach(function(item){
+  lbItems.forEach(function(item,i){
     item.addEventListener('click',function(e){
       var thumb=item.querySelector('.thumb'), name=item.querySelector('.mname');
       if(!thumb||!name) return;
       e.preventDefault();
-      openLightbox(thumb.style.backgroundImage,name.textContent);
+      openLightbox(i);
     });
   });
   lbClose.addEventListener('click',closeLightbox);
   lbEnquire.addEventListener('click',closeLightbox);
+  lbPrev.addEventListener('click',function(){ if(lbIndex>0) renderLightbox(lbIndex-1); });
+  lbNext.addEventListener('click',function(){ if(lbIndex<lbItems.length-1) renderLightbox(lbIndex+1); });
   lb.addEventListener('click',function(e){ if(e.target===lb) closeLightbox(); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLightbox(); });
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLightbox();
+    else if(e.key==='ArrowLeft' && lbIndex>0) renderLightbox(lbIndex-1);
+    else if(e.key==='ArrowRight' && lbIndex<lbItems.length-1) renderLightbox(lbIndex+1);
+  });
+  var lbTouchX=null;
+  lb.addEventListener('touchstart',function(e){ lbTouchX=e.changedTouches[0].clientX; },{passive:true});
+  lb.addEventListener('touchend',function(e){
+    if(lbTouchX===null) return;
+    var dx=e.changedTouches[0].clientX-lbTouchX;
+    if(Math.abs(dx)>40){
+      if(dx<0 && lbIndex<lbItems.length-1) renderLightbox(lbIndex+1);
+      else if(dx>0 && lbIndex>0) renderLightbox(lbIndex-1);
+    }
+    lbTouchX=null;
+  },{passive:true});
 
   // #contact is the last anchorable section before the footer, so on tall
   // viewports there isn't enough page left below it for the browser to
