@@ -59,7 +59,7 @@ img,svg{display:block;max-width:100%}
     repeating-linear-gradient(120deg, rgba(255,255,255,.02) 0 2px, transparent 2px 44px)}
 .ph-tag{position:absolute;right:12px;bottom:12px;font-family:Inter;font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.55);background:rgba(0,0,0,.4);border:1px solid rgba(245,243,239,.18);padding:6px 10px;z-index:2}
 .photo{background-size:cover;background-position:center}
-.hero.photo::before,.banner.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.25) 0%,rgba(13,13,13,.45) 55%,rgba(13,13,13,.93) 100%);z-index:1}
+.hero.photo::before,.banner.photo::before,.pintro.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.25) 0%,rgba(13,13,13,.45) 55%,rgba(13,13,13,.93) 100%);z-index:1}
 .hero .wrap{position:relative;z-index:2}
 .banner .in{position:relative;z-index:2}
 
@@ -101,6 +101,7 @@ section{padding:80px 0}
 .pintro{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:150px 0 64px}
 .pintro h1{font-size:clamp(42px,9vw,90px);margin-top:14px}
 .pintro .lede{max-width:520px;color:var(--mut);font-size:16.5px;margin-top:18px}
+.pintro .wrap{position:relative;z-index:2}
 
 /* split (photo + copy) */
 .split{display:grid;grid-template-columns:1fr;gap:36px;align-items:center}
