@@ -132,6 +132,16 @@ footer{padding:64px 0 0}
 .foot-base a:hover{color:var(--bianco)}
 
 .wa-fab{position:fixed;right:18px;bottom:18px;z-index:90;width:56px;height:56px;border-radius:50%;background:var(--rosso);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+
+/* cookie consent bar */
+.cookie-bar{position:fixed;left:0;right:0;bottom:0;z-index:95;background:rgba(13,13,13,.97);backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:18px 0;display:none}
+.cookie-bar.show{display:block}
+.cookie-bar .cb-wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+.cookie-bar p{color:var(--mut);font-size:13.5px;max-width:640px}
+.cookie-bar p a{color:var(--bianco);text-decoration:underline}
+.cookie-bar p a:hover{color:var(--rosso)}
+.cookie-bar .cb-actions{display:flex;flex-wrap:wrap;gap:10px;flex:none}
+.cookie-bar .btn{padding:11px 20px;font-size:12px}
 </style>
 </head>
 <body>
@@ -263,7 +273,7 @@ footer{padding:64px 0 0}
     </div>
     <div class="foot-base">
       <span>© 2026 Moto Italia. All rights reserved.</span>
-      <span><a href="#">Privacy Policy</a> · Powered by <a href="https://wecomeone.me/" target="_blank" rel="noopener">Wecomeone Marketing And Comms</a></span>
+      <span><a href="privacy.html">Privacy Policy</a> · <a href="#" id="cookieSettingsLink">Cookie Settings</a> · Powered by <a href="https://wecomeone.me/" target="_blank" rel="noopener">Wecomeone Marketing And Comms</a></span>
     </div>
   </div>
 </footer>
@@ -272,8 +282,45 @@ footer{padding:64px 0 0}
   <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M17 14.5c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z" fill="#F5F3EF"/><path d="M12 2C6.48 2 2 6.35 2 11.7c0 1.9.55 3.67 1.5 5.18L2 22l5.3-1.4a10.2 10.2 0 0 0 4.7 1.15c5.52 0 10-4.35 10-9.7C22 6.35 17.52 2 12 2z" stroke="#F5F3EF" stroke-width="1.3" fill="none"/></svg>
 </a>
 
+
+<div class="cookie-bar" id="cookieBar">
+  <div class="wrap cb-wrap">
+    <p>We use cookies to run this site and, once enabled, to measure how our Facebook and Instagram advertising performs. Choose Accept to allow this, or Reject to keep only the cookies the site needs to work. See our <a href="privacy.html">Privacy Policy</a> for details.</p>
+    <div class="cb-actions">
+      <button class="btn line" id="cookieReject" type="button">Reject</button>
+      <button class="btn fill" id="cookieAccept" type="button">Accept</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
+  // cookie consent — Accept enables marketing cookies (Facebook Pixel, once
+  // installed); Reject keeps only what the site needs to run. The choice is
+  // remembered in localStorage and can be reopened via the Cookie Settings
+  // link in the footer.
+  var CONSENT_KEY='miCookieConsent';
+  var cookieBar=document.getElementById('cookieBar');
+  var cookieAccept=document.getElementById('cookieAccept');
+  var cookieReject=document.getElementById('cookieReject');
+  var cookieSettingsLink=document.getElementById('cookieSettingsLink');
+  function getConsent(){ try{ return localStorage.getItem(CONSENT_KEY); }catch(e){ return null; } }
+  function setConsent(v){ try{ localStorage.setItem(CONSENT_KEY, v); }catch(e){} }
+  function showCookieBar(){ if(cookieBar){ cookieBar.classList.add('show'); } }
+  function hideCookieBar(){ if(cookieBar){ cookieBar.classList.remove('show'); } }
+  // Drop the real Facebook Pixel base code inside this function once the
+  // pixel ID is live. It only ever runs after someone accepts cookies,
+  // whether just now or on an earlier visit, never before.
+  function loadMarketingScripts(){
+    // Facebook Pixel base code goes here.
+  }
+  var existingConsent=getConsent();
+  if(existingConsent==='accepted'){ loadMarketingScripts(); }
+  else if(existingConsent!=='rejected'){ showCookieBar(); }
+  if(cookieAccept){ cookieAccept.addEventListener('click',function(){ setConsent('accepted'); hideCookieBar(); loadMarketingScripts(); }); }
+  if(cookieReject){ cookieReject.addEventListener('click',function(){ setConsent('rejected'); hideCookieBar(); }); }
+  if(cookieSettingsLink){ cookieSettingsLink.addEventListener('click',function(e){ e.preventDefault(); showCookieBar(); }); }
+
   var hdr=document.getElementById('hdr');
   window.addEventListener('scroll',function(){
     hdr.classList.toggle('solid',window.scrollY>40);

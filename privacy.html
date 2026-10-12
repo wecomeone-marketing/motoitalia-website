@@ -1,0 +1,383 @@
+<!doctype html>
+<!--
+  MOTO ITALIA — Privacy Policy, Phase 1
+  Prepared by Wecomeone Marketing And Comms, October 2026
+
+  Shares the header, footer, CSS and scroll/menu behaviour with the rest
+  of the site (index.html, about.html, accessories.html, piaggio.html,
+  vespa.html, moto-guzzi.html, aprilia.html). Keep the shared chrome in
+  sync when any of them changes.
+
+  Content note: drafted to cover a Cyprus-based, GDPR-governed business
+  with no online forms or checkout in this phase, a planned Facebook
+  Pixel, and the site-wide cookie consent banner (see the cookie-bar
+  block and script below, duplicated on every page). Have this reviewed
+  by a lawyer before relying on it, and update the Facebook Pixel section
+  once the pixel is actually live.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Moto Italia</title>
+<meta name="description" content="How Moto Italia collects, uses and protects personal data, and how we use cookies, including Facebook Pixel.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rosso:#DF0123;
+  --nero:#0D0D0D;
+  --nero2:#161616;
+  --bianco:#F5F3EF;
+  --verde:#069147;
+  --line:rgba(245,243,239,.14);
+  --mut:rgba(245,243,239,.58);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:96px}
+body{margin:0;background:var(--nero);color:var(--bianco);font-family:Inter,system-ui,sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:"Bebas Neue",Inter,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.94;margin:0}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+@media(min-width:760px){.wrap{padding:0 40px}}
+
+.eyebrow{font-family:Inter;font-weight:600;text-transform:uppercase;letter-spacing:.22em;font-size:11.5px;color:var(--mut)}
+.eyebrow.on{color:var(--rosso)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:Inter;font-weight:600;font-size:13.5px;text-transform:uppercase;letter-spacing:.1em;padding:15px 26px;border-radius:2px;transition:opacity .2s;border:none;cursor:pointer}
+.btn.fill{background:var(--rosso);color:var(--bianco)}
+.btn.line{border:1px solid rgba(245,243,239,.4);color:var(--bianco);background:none}
+.btn:hover{opacity:.82}
+
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+header.solid{background:rgba(13,13,13,.92);backdrop-filter:blur(6px);border-color:var(--line)}
+header .bar{display:flex;align-items:center;gap:20px;height:70px}
+.logo{display:flex;align-items:center}
+.logo img{height:28px;width:auto;display:block}
+nav.main{display:none;margin-left:auto;align-items:center;gap:28px}
+nav.main a{font-family:"Bebas Neue";font-size:15px;letter-spacing:.06em;color:var(--mut)}
+nav.main a:hover{color:var(--bianco)}
+nav.main a[href$="#contact"]{color:var(--rosso)}
+nav.main a[href$="#contact"]:hover{color:var(--rosso)}
+.mmenu a[href$="#contact"]{color:var(--rosso)}
+.hamb{margin-left:auto;width:38px;height:38px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:none;cursor:pointer}
+.hamb span{width:18px;height:1.5px;background:var(--bianco)}
+@media(min-width:960px){nav.main{display:flex}.hamb{display:none}}
+
+/* mobile menu */
+.mmenu{position:fixed;inset:0;background:var(--nero);z-index:99;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:0 32px;transform:translateY(-100%);transition:transform .35s ease}
+.mmenu.open{transform:translateY(0)}
+.mmenu a{font-family:"Bebas Neue";font-size:34px}
+@media(min-width:960px){.mmenu{display:none}}
+
+section{padding:80px 0}
+@media(min-width:760px){section{padding:120px 0}}
+
+/* policy header */
+.policy-hero{padding:170px 0 0}
+.policy-hero h1{font-size:clamp(42px,8vw,78px);margin-top:14px}
+.policy-hero .lede{max-width:560px;color:var(--mut);font-size:15.5px;margin-top:16px}
+.policy-hero .updated{color:var(--mut);font-size:13px;margin-top:22px}
+
+/* policy body */
+.policy{max-width:820px}
+.policy-section{padding:0 0 54px}
+.policy-section:last-of-type{padding-bottom:0}
+.policy-section h2{font-size:clamp(22px,4vw,28px);margin-bottom:16px}
+.policy-section p{color:var(--mut);font-size:15.5px;margin-bottom:14px}
+.policy-section p:last-child{margin-bottom:0}
+.policy-section ul{margin:0 0 14px;padding-left:20px;color:var(--mut);font-size:15.5px}
+.policy-section ul li{margin-bottom:8px}
+.policy-section a{color:var(--bianco);text-decoration:underline}
+.policy-section a:hover{color:var(--rosso)}
+.policy-section strong{color:var(--bianco)}
+
+/* footer */
+footer{padding:64px 0 0}
+.fgrid{display:grid;grid-template-columns:1fr;gap:36px;padding-bottom:50px;border-bottom:1px solid var(--line)}
+@media(min-width:760px){.fgrid{grid-template-columns:1.3fr 1fr 1fr 1fr 1fr}}
+.fcol h5{font-family:Inter;font-weight:600;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:16px}
+.fcol a{display:block;font-size:14.5px;color:var(--bianco);opacity:.85;margin-bottom:10px}
+.fcol a:hover{opacity:1;color:var(--rosso)}
+.fcol p{color:var(--mut);font-size:14px;max-width:280px}
+.foot-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;padding:26px 0 40px;font-size:12.5px;color:var(--mut)}
+.foot-base a{color:var(--mut)}
+.foot-base a:hover{color:var(--bianco)}
+
+.wa-fab{position:fixed;right:18px;bottom:18px;z-index:90;width:56px;height:56px;border-radius:50%;background:var(--rosso);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+
+/* cookie consent bar */
+.cookie-bar{position:fixed;left:0;right:0;bottom:0;z-index:95;background:rgba(13,13,13,.97);backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:18px 0;display:none}
+.cookie-bar.show{display:block}
+.cookie-bar .cb-wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+.cookie-bar p{color:var(--mut);font-size:13.5px;max-width:640px}
+.cookie-bar p a{color:var(--bianco);text-decoration:underline}
+.cookie-bar p a:hover{color:var(--rosso)}
+.cookie-bar .cb-actions{display:flex;flex-wrap:wrap;gap:10px;flex:none}
+.cookie-bar .btn{padding:11px 20px;font-size:12px}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap bar">
+    <a class="logo" href="index.html">
+      <img src="assets/logo.svg" alt="Moto Italia">
+    </a>
+    <nav class="main">
+      <a href="piaggio.html">Piaggio</a>
+      <a href="vespa.html">Vespa</a>
+      <a href="moto-guzzi.html">Moto Guzzi</a>
+      <a href="aprilia.html">Aprilia</a>
+      <a href="accessories.html">Accessories</a>
+      <a href="about.html">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <button class="hamb" id="hambBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu">
+  <a href="piaggio.html">Piaggio</a>
+  <a href="vespa.html">Vespa</a>
+  <a href="moto-guzzi.html">Moto Guzzi</a>
+  <a href="aprilia.html">Aprilia</a>
+  <a href="accessories.html">Accessories</a>
+  <a href="about.html">About</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<main>
+
+  <section class="policy-hero">
+    <div class="wrap">
+      <div class="eyebrow on rv">Legal</div>
+      <h1 class="rv">Privacy Policy</h1>
+      <p class="lede rv">How Moto Italia collects, uses and protects your personal data when you visit this website, and the choices you have.</p>
+      <p class="updated rv">Last updated: 12 October 2026</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap policy">
+
+      <div class="policy-section">
+        <h2>Who we are</h2>
+        <p>Moto Italia is a Piaggio Group authorised dealer based at 2 Pentadaktylou Street, Larnaca 6030, Cyprus, selling and servicing Piaggio, Vespa, Moto Guzzi and Aprilia. For the purposes of this policy and under the General Data Protection Regulation (GDPR), Moto Italia is the data controller responsible for this website, motoitalia.wecomeone.me.</p>
+        <p>You can reach us by phone on <a href="tel:+35724667400">+357 24 667 400</a> or in person at the address above. Full contact details are also at the bottom of this page.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Information we collect</h2>
+        <p>This website does not have an online shop, booking form or newsletter sign up in this phase, so we do not ask you to submit personal data directly on any page. The information we do collect falls into two categories.</p>
+        <ul>
+          <li><strong>Technical and usage data</strong>, collected automatically through cookies when you visit and consent to them, such as your device and browser type, approximate location inferred from your IP address, the pages you view and how you arrived at the site.</li>
+          <li><strong>Information you choose to share with us</strong>, if you call, message or visit the store directly using the contact details on this site. That conversation is between you and Moto Italia, and may also be covered by the privacy policy of whichever service you use to reach us, such as your phone provider or WhatsApp.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>How we use this information</h2>
+        <p>Where you have consented to it, we use cookies to understand how people use the site and, once in place, to measure the performance of our Facebook and Instagram advertising through Facebook Pixel. If you contact us directly about a vehicle, service or part, we use the details of that conversation to respond to you and, where relevant, to arrange the service you asked for.</p>
+        <p>We do not use your information to make automated decisions about you, and we do not sell your personal data to anyone.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Cookies and tracking technologies</h2>
+        <p>Cookies are small files placed on your device when you visit a website. This site uses two kinds.</p>
+        <ul>
+          <li><strong>Strictly necessary cookies</strong>, which let the site function correctly, such as remembering that you have already responded to the cookie banner. These do not require your consent and cannot be switched off.</li>
+          <li><strong>Marketing and measurement cookies</strong>, including Facebook Pixel, which we use to understand how visitors found this site and how our Facebook and Instagram advertising is performing. These only load after you accept cookies using the banner on this site.</li>
+        </ul>
+        <p>You can accept or reject marketing cookies at any time using the banner that appears on your first visit, or by reopening it with the <strong>Cookie Settings</strong> link in the footer of any page. If you reject them, you can still browse and use the site normally.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Legal basis for processing</h2>
+        <p>We rely on the following legal bases under the GDPR and Cyprus' Law 125(I)/2018 to process personal data through this site.</p>
+        <ul>
+          <li><strong>Consent</strong>, for marketing and measurement cookies such as Facebook Pixel, which you give or withhold through the cookie banner and can withdraw at any time.</li>
+          <li><strong>Legitimate interest</strong>, for the strictly necessary cookies that keep the site working and secure.</li>
+          <li><strong>Steps taken at your request</strong>, where you contact us directly to ask about a vehicle, service booking or part.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>Sharing your information</h2>
+        <p>We do not sell or rent your personal data. We may share limited information with the following categories of recipient.</p>
+        <ul>
+          <li><strong>Meta Platforms Ireland Limited</strong>, through Facebook Pixel, only once you have consented to marketing cookies.</li>
+          <li><strong>Google</strong>, which provides the web font and the Google Maps link used on this site. Loading a font from Google's servers or opening a Google Maps link may share your IP address with Google under Google's own privacy policy.</li>
+          <li><strong>GitHub, Inc.</strong>, which hosts this website. Standard web server logs are processed by GitHub as part of hosting the site.</li>
+          <li>Any professional advisor, authority or successor business, where required by law or in connection with a sale or restructuring of Moto Italia.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>International data transfers</h2>
+        <p>Some of the providers above, including Meta and Google, may process data outside Cyprus and the European Economic Area, including in the United States. Where this happens, it is done under a recognised legal safeguard, such as the EU-US Data Privacy Framework or the European Commission's standard contractual clauses.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Data retention</h2>
+        <p>We keep your cookie consent choice and any usage data collected through cookies for as long as the relevant cookie stays active, or until you withdraw consent, whichever comes first. We do not otherwise store personal data collected through this website, since the site has no accounts, forms or database in this phase.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Your rights under the GDPR</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Ask what personal data we hold about you and receive a copy.</li>
+          <li>Ask us to correct inaccurate data.</li>
+          <li>Ask us to delete data we no longer need to keep.</li>
+          <li>Object to or restrict certain processing, including marketing.</li>
+          <li>Withdraw consent at any time, without affecting anything done before you withdrew it.</li>
+          <li>Lodge a complaint with a supervisory authority, detailed below.</li>
+        </ul>
+        <p>To exercise any of these rights, contact us using the details at the bottom of this page.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Children's privacy</h2>
+        <p>This website is not directed at children, and we do not knowingly collect personal data from anyone under 16. If you believe a child has provided us with personal data, please contact us so we can remove it.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Security</h2>
+        <p>We take reasonable technical and organisational measures to protect any information processed through this site. No method of transmission over the internet is completely secure, so we cannot guarantee absolute security.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Changes to this policy</h2>
+        <p>We may update this policy from time to time, for example when we add new tools such as analytics or start taking online enquiries. The date at the top of this page shows when it was last revised. Please check back periodically.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Contact us and complaints</h2>
+        <p>For any question about this policy or your personal data, contact Moto Italia at 2 Pentadaktylou Street, Larnaca 6030, Cyprus, or by phone on <a href="tel:+35724667400">+357 24 667 400</a>.</p>
+        <p>If you are not satisfied with our response, you can lodge a complaint with Cyprus' data protection authority:</p>
+        <p>Office of the Commissioner for Personal Data Protection<br>
+        P.O. Box 23378, 1682 Nicosia, Cyprus<br>
+        Phone: +357 22 818456<br>
+        Email: <a href="mailto:commissioner@dataprotection.gov.cy">commissioner@dataprotection.gov.cy</a><br>
+        Website: <a href="http://www.dataprotection.gov.cy" target="_blank" rel="noopener">dataprotection.gov.cy</a></p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fcol">
+        <a class="logo" href="index.html" style="margin-bottom:16px">
+          <img src="assets/logo.svg" alt="Moto Italia">
+        </a>
+        <p>Authorised Larnaka dealer for Piaggio, Vespa, Moto Guzzi and Aprilia.</p>
+      </div>
+      <div class="fcol">
+        <h5>Brands</h5>
+        <a href="piaggio.html">Piaggio</a>
+        <a href="vespa.html">Vespa</a>
+        <a href="moto-guzzi.html">Moto Guzzi</a>
+        <a href="aprilia.html">Aprilia</a>
+      </div>
+      <div class="fcol">
+        <h5>Shop</h5>
+        <a href="accessories.html">Accessories</a>
+        <a href="about.html">About / Store</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <h5>Visit</h5>
+        <a href="https://www.google.com/maps/search/?api=1&query=2+Pentadaktylou+Street+Larnaca+6030" target="_blank" rel="noopener">2 Pentadaktylou Street, Larnaca 6030</a>
+        <a href="tel:+35724667400">Tel. 24 667 400</a>
+      </div>
+      <div class="fcol">
+        <h5>Working Hours</h5>
+        <p style="line-height:1.8;color:var(--bianco)">
+          Monday – Friday<br>08:45 – 13:00 &amp;<br>15:00 – 18:00
+        </p>
+        <p style="margin-top:14px;line-height:1.8;color:var(--bianco)">
+          Wednesday &amp; Saturday<br>08:45 – 13:00
+        </p>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Moto Italia. All rights reserved.</span>
+      <span><a href="privacy.html">Privacy Policy</a> · <a href="#" id="cookieSettingsLink">Cookie Settings</a> · Powered by <a href="https://wecomeone.me/" target="_blank" rel="noopener">Wecomeone Marketing And Comms</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="index.html#contact" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M17 14.5c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z" fill="#F5F3EF"/><path d="M12 2C6.48 2 2 6.35 2 11.7c0 1.9.55 3.67 1.5 5.18L2 22l5.3-1.4a10.2 10.2 0 0 0 4.7 1.15c5.52 0 10-4.35 10-9.7C22 6.35 17.52 2 12 2z" stroke="#F5F3EF" stroke-width="1.3" fill="none"/></svg>
+</a>
+
+<div class="cookie-bar" id="cookieBar">
+  <div class="wrap cb-wrap">
+    <p>We use cookies to run this site and, once enabled, to measure how our Facebook and Instagram advertising performs. Choose Accept to allow this, or Reject to keep only the cookies the site needs to work. See our <a href="privacy.html">Privacy Policy</a> for details.</p>
+    <div class="cb-actions">
+      <button class="btn line" id="cookieReject" type="button">Reject</button>
+      <button class="btn fill" id="cookieAccept" type="button">Accept</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // cookie consent — Accept enables marketing cookies (Facebook Pixel, once
+  // installed); Reject keeps only what the site needs to run. The choice is
+  // remembered in localStorage and can be reopened via the Cookie Settings
+  // link in the footer.
+  var CONSENT_KEY='miCookieConsent';
+  var cookieBar=document.getElementById('cookieBar');
+  var cookieAccept=document.getElementById('cookieAccept');
+  var cookieReject=document.getElementById('cookieReject');
+  var cookieSettingsLink=document.getElementById('cookieSettingsLink');
+  function getConsent(){ try{ return localStorage.getItem(CONSENT_KEY); }catch(e){ return null; } }
+  function setConsent(v){ try{ localStorage.setItem(CONSENT_KEY, v); }catch(e){} }
+  function showCookieBar(){ if(cookieBar){ cookieBar.classList.add('show'); } }
+  function hideCookieBar(){ if(cookieBar){ cookieBar.classList.remove('show'); } }
+  // Drop the real Facebook Pixel base code inside this function once the
+  // pixel ID is live. It only ever runs after someone accepts cookies,
+  // whether just now or on an earlier visit, never before.
+  function loadMarketingScripts(){
+    // Facebook Pixel base code goes here.
+  }
+  var existingConsent=getConsent();
+  if(existingConsent==='accepted'){ loadMarketingScripts(); }
+  else if(existingConsent!=='rejected'){ showCookieBar(); }
+  if(cookieAccept){ cookieAccept.addEventListener('click',function(){ setConsent('accepted'); hideCookieBar(); loadMarketingScripts(); }); }
+  if(cookieReject){ cookieReject.addEventListener('click',function(){ setConsent('rejected'); hideCookieBar(); }); }
+  if(cookieSettingsLink){ cookieSettingsLink.addEventListener('click',function(e){ e.preventDefault(); showCookieBar(); }); }
+
+  var hdr=document.getElementById('hdr');
+  window.addEventListener('scroll',function(){
+    hdr.classList.toggle('solid',window.scrollY>40);
+  });
+  var hb=document.getElementById('hambBtn'), mm=document.getElementById('mmenu');
+  hb.addEventListener('click',function(){mm.classList.toggle('open');});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');});});
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  },{threshold:.15});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+})();
+</script>
+
+</body>
+</html>
