@@ -7,10 +7,10 @@
   homepage and about.html so every page reads as one site. Keep the
   shared chrome in sync across files when any of them changes.
 
-  The four category tiles are deliberately photo-free (the same
-  diagonal placeholder texture used elsewhere for pending assets)
-  rather than reusing one generic accessories photo four times.
-  Swap in real category photography once the client supplies it.
+  The four category tiles carry real category photography, each
+  its own file (assets/ph/accessories-<category>.webp) with a dark
+  gradient overlay (.ccard.photo::before) so the white text stays
+  readable on top.
 -->
 <html lang="en">
 <head>
@@ -101,8 +101,7 @@ section{padding:80px 0}
 .pintro h1{font-size:clamp(42px,9vw,90px);margin-top:14px}
 .pintro .lede{max-width:520px;color:var(--mut);font-size:16.5px;margin-top:18px}
 
-/* category grid — same tile system as the brand grid, no photo so it doesn't
-   compete visually with the brand cards or read as a stand-in for real product shots */
+/* category grid — same tile system as the brand grid */
 .cats{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);margin-top:46px;border:1px solid var(--line)}
 @media(min-width:760px){.cats{grid-template-columns:1fr 1fr}}
 .ccard{position:relative;min-height:240px;padding:34px 30px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
@@ -110,6 +109,7 @@ section{padding:80px 0}
 .ccard h3{font-size:32px;position:relative;z-index:2}
 .ccard p{color:var(--mut);font-size:14.5px;margin-top:8px;max-width:320px;position:relative;z-index:2}
 .ccard .go{margin-top:18px;font-family:Inter;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--rosso);position:relative;z-index:2}
+.ccard.photo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.1) 0%,rgba(13,13,13,.5) 55%,rgba(13,13,13,.92) 100%);z-index:1}
 
 /* full-bleed banner */
 .banner{position:relative;min-height:340px;display:flex;align-items:flex-end;padding:36px 0}
